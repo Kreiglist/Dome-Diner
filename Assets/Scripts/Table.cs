@@ -2,45 +2,67 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-    public Transform seatingPosition; // The seating position where the customer will sit
-    public GameObject seatingPreviewPrefab; // Prefab or image to display as seating preview
+    public Transform seatingPosition;     // Position where the customer group should sit
+    public GameObject seatingPreview;     // A visual preview that shows where the customers will sit
+    public GameObject chairWithCustomerPrefab;  // Prefab for the chair with customer seated
 
-    private GameObject currentSeatingPreview = null;
+    private GameObject instantiatedChair; // Reference to the instantiated chair prefab
 
-    // Show the seating preview when the customer hovers over the table
-    public void ShowSeatingPreview(GameObject customer)
+    private void Start()
     {
-        if (currentSeatingPreview == null)
+        // Ensure the seating preview is hidden at the start
+        if (seatingPreview != null)
         {
-            // Create the seating preview at the seating position
-            currentSeatingPreview = Instantiate(seatingPreviewPrefab, seatingPosition.position, Quaternion.identity);
+            seatingPreview.SetActive(false);
         }
     }
 
-    // Hide the seating preview when the customer leaves the table
+    // Show seating preview when hovering over the table
+    public void ShowSeatingPreview(GameObject customerGroup)
+    {
+        Debug.Log("Showing seating preview...");
+
+        // Activate the seating preview if available
+        if (seatingPreview != null)
+        {
+            seatingPreview.SetActive(true);  // Show seating preview
+        }
+    }
+
+    // Hide seating preview when the group leaves the table area
     public void HideSeatingPreview()
     {
-        if (currentSeatingPreview != null)
+        Debug.Log("Hiding seating preview...");
+
+        // Deactivate the seating preview
+        if (seatingPreview != null)
         {
-            Destroy(currentSeatingPreview);
-            currentSeatingPreview = null;
+            seatingPreview.SetActive(false);  // Hide seating preview
         }
     }
 
-    // Seat the customer at the table
-    public void SeatCustomer(GameObject customer)
+    // Return the seating position for the group to snap to
+    public Transform GetSeatingPosition()
     {
-        // Move the customer to the seating position
-        customer.transform.position = seatingPosition.position;
+        return seatingPosition;
+    }
 
-        // Optionally, you can disable dragging or mark the customer as seated
-        DraggableCustomer draggableCustomer = customer.GetComponent<DraggableCustomer>();
-        if (draggableCustomer != null)
+    // Seat the customer group and instantiate the seating prefab
+    public void SeatCustomerGroup(GameObject customerGroup)
+    {
+        Debug.Log("Seating the customer group...");
+
+        // Instantiate the chairWithCustomer prefab at the seating position (if applicable)
+        if (instantiatedChair == null && chairWithCustomerPrefab != null)
         {
-            Destroy(draggableCustomer); // Optional: Remove dragging ability after seating
+            instantiatedChair = Instantiate(chairWithCustomerPrefab, seatingPosition.position, Quaternion.identity);
+            instantiatedChair.transform.SetParent(this.transform);  // Parent the instantiated object to the table
+        }
+        else
+        {
+            Debug.LogWarning("Chair has already been instantiated.");
         }
 
-        // Hide the seating preview
-        HideSeatingPreview();
+        // No disabling of prefabs or hiding necessary here, just seating the group
     }
 }
