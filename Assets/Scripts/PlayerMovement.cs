@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform currentTarget; // The current node the player is moving towards
     private bool isMoving = false; // Whether the player is currently moving
     private bool moveHorizontally = true; // Control whether to move horizontally first
+    public Animator animator;
 
     void Update()
     {
@@ -24,8 +25,20 @@ public class PlayerMovement : MonoBehaviour
                 );
                 transform.position = newPos;
 
-                // If horizontal movement is complete, switch to vertical movement
-                if (Mathf.Abs(transform.position.x - currentTarget.position.x) < 0.1f)
+                // Flip the sprite based on the direction of movement
+                if (currentTarget.position.x < transform.position.x)
+                {
+                    // Moving left, flip the sprite
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (currentTarget.position.x > transform.position.x)
+                {
+                    // Moving right, set sprite to default scale
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+
+                    // If horizontal movement is complete, switch to vertical movement
+                    if (Mathf.Abs(transform.position.x - currentTarget.position.x) < 0.1f)
                 {
                     moveHorizontally = false;
                 }
@@ -54,6 +67,13 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
+            // Set animator's moveSpeed parameter based on movement speed
+            animator.SetFloat("moveSpeed", moveSpeed);
+        }
+        else
+        {
+            // If the player is not moving, set the moveSpeed to 0
+            animator.SetFloat("moveSpeed", 0f);
         }
     }
 
