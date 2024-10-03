@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Astronaut guy 1_0: 7023110319867254002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

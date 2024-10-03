@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Astro_front_0: 4137421907084757807
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

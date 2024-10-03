@@ -2,19 +2,15 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-    public Transform seatingPosition;     // Position where the customer group should sit
-    public GameObject seatingPreview;     // A visual preview that shows where the customers will sit
+    public Transform seatingPosition;       // Position where the customer group should sit
+    public GameObject seatingPreview;       // A visual preview that shows where the customers will sit
     public GameObject chairWithCustomerPrefab;  // Prefab for the chair with customer seated
 
-    private GameObject instantiatedChair; // Reference to the instantiated chair prefab
+    private GameObject instantiatedChair;   // Reference to the instantiated chair prefab
 
     private void Start()
     {
-        // Ensure the seating preview is hidden at the start
-        if (seatingPreview != null)
-        {
-            seatingPreview.SetActive(false);
-        }
+        // Initialize, but no hiding of seating preview
     }
 
     // Show seating preview when hovering over the table
@@ -22,11 +18,7 @@ public class Table : MonoBehaviour
     {
         Debug.Log("Showing seating preview...");
 
-        // Activate the seating preview if available
-        if (seatingPreview != null)
-        {
-            seatingPreview.SetActive(true);  // Show seating preview
-        }
+        // Optional: Add any visual change if needed for the preview
     }
 
     // Hide seating preview when the group leaves the table area
@@ -34,11 +26,7 @@ public class Table : MonoBehaviour
     {
         Debug.Log("Hiding seating preview...");
 
-        // Deactivate the seating preview
-        if (seatingPreview != null)
-        {
-            seatingPreview.SetActive(false);  // Hide seating preview
-        }
+        // Optional: Add any visual change if needed for hiding the preview
     }
 
     // Return the seating position for the group to snap to
@@ -47,12 +35,12 @@ public class Table : MonoBehaviour
         return seatingPosition;
     }
 
-    // Seat the customer group and instantiate the seating prefab
+    // Seat the customer group and instantiate the seating prefab (No disabling logic here)
     public void SeatCustomerGroup(GameObject customerGroup)
     {
         Debug.Log("Seating the customer group...");
 
-        // Instantiate the chairWithCustomer prefab at the seating position (if applicable)
+        // Instantiate the chairWithCustomer prefab at the seating position
         if (instantiatedChair == null && chairWithCustomerPrefab != null)
         {
             instantiatedChair = Instantiate(chairWithCustomerPrefab, seatingPosition.position, Quaternion.identity);
@@ -63,6 +51,6 @@ public class Table : MonoBehaviour
             Debug.LogWarning("Chair has already been instantiated.");
         }
 
-        // No disabling of prefabs or hiding necessary here, just seating the group
+        // No SetActive or hiding logic here
     }
 }

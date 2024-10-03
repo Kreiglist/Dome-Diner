@@ -16,7 +16,7 @@ public class DraggableCustomerGroup : MonoBehaviour
         mainCamera = Camera.main;
         customerCollider = GetComponent<Collider2D>();
 
-        // No need to disable the collider, keeping everything enabled from the start
+        // Enable the collider right after the game starts
         customerCollider.enabled = true;
     }
 

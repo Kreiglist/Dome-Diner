@@ -202,7 +202,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      walk 2 hand_front_0: -6081732511517716369
+      walk 2 hand_front_1: 6790998630280576359
+      walk 2 hand_front_2: -1799832993141705155
+      walk 2 hand_front_3: -4790296350921918109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
