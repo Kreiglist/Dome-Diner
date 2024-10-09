@@ -25,6 +25,16 @@ public class PlayerMovement : MonoBehaviour
                 );
                 transform.position = newPos;
 
+                // If moving forward, enable the forward animation
+                if (currentTarget.position.y > transform.position.y)
+                {
+                    animator.SetBool("isMovingForward", true); // Play forward movement animation
+                }
+                else
+                {
+                    animator.SetBool("isMovingForward", false); // Stop forward movement animation
+                }
+
                 // Flip the sprite based on the direction of movement
                 if (currentTarget.position.x < transform.position.x)
                 {
@@ -74,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // If the player is not moving, set the moveSpeed to 0
             animator.SetFloat("moveSpeed", 0f);
+            animator.SetBool("isMovingForward", false);
         }
     }
 

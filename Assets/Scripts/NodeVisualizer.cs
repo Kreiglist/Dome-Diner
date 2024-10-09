@@ -3,6 +3,8 @@ using UnityEngine;
 public class NodeVisualizer : MonoBehaviour
 {
     public Transform[] connectedNodes; // Array of nodes this node is connected to
+    public Color lineColor = Color.green;
+
 
     void OnDrawGizmos()
     {
