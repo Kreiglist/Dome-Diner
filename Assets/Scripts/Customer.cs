@@ -1,13 +1,69 @@
+
 using UnityEngine;
+using System.Collections;
 
 public class Customer : MonoBehaviour
 {
-    public bool IsServed = false;  // This will track whether the customer has been served
+    public GameObject standingModel;      // Reference to the standing customer model
+    public GameObject seatedModel;        // Reference to the seated customer model (or seated animation)
+    public SpriteRenderer eatingGIF;      // GIF or sprite for eating animation
+    public SpriteRenderer readingMenuGIF; // GIF or sprite for reading menu animation
 
-    // Method to mark the customer as served
-    public void ServeCustomer()
+    public float readMenuTime = 5f;
+    public float eatingTime = 10f;
+    public float askBillTime = 3f;
+
+    private void Start()
     {
-        IsServed = true;
-        // Add any additional logic like animations, score increase, etc.
+        // Start with standing model
+        standingModel.SetActive(true);
+        seatedModel.SetActive(false);
+        eatingGIF.gameObject.SetActive(false);
+        readingMenuGIF.gameObject.SetActive(false);
+    }
+
+    // Called when customer is seated at the table
+    public void SitAtTable()
+    {
+        standingModel.SetActive(false);  // Hide standing model
+        seatedModel.SetActive(true);     // Show seated model
+        Debug.Log("Customer is seated.");
+        StartCustomerSequence();
+    }
+
+    // Start the sequence of actions: reading menu, eating, asking for bill
+    private void StartCustomerSequence()
+    {
+        StartCoroutine(CustomerSequence());
+    }
+
+    private IEnumerator CustomerSequence()
+    {
+        // Step 1: Read the Menu
+        readingMenuGIF.gameObject.SetActive(true);  // Show reading menu GIF
+        Debug.Log("Customer is reading the menu.");
+        yield return new WaitForSeconds(readMenuTime);
+        readingMenuGIF.gameObject.SetActive(false);  // Hide reading menu GIF
+
+        // Step 2: Eating
+        eatingGIF.gameObject.SetActive(true);  // Show eating GIF
+        Debug.Log("Customer is eating.");
+        yield return new WaitForSeconds(eatingTime);
+        eatingGIF.gameObject.SetActive(false);  // Hide eating GIF
+
+        // Step 3: Ask for Bill
+        Debug.Log("Customer is asking for the bill.");
+        yield return new WaitForSeconds(askBillTime);
+
+        // Step 4: Leave (could trigger an exit animation, destroy object, etc.)
+        LeaveTable();
+    }
+
+    // Handles leaving the table after eating
+    public void LeaveTable()
+    {
+        Debug.Log("Customer is leaving.");
+        // You can destroy the customer object or trigger an exit animation here
+        Destroy(this.gameObject);
     }
 }

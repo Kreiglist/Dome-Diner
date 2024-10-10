@@ -1,25 +1,20 @@
+
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CustomerGroup : MonoBehaviour
 {
-    public GameObject[] customers;  // Array to hold the individual customers in the group
+    public List<GameObject> customers = new List<GameObject>();
 
-    public void SeatAtTable(Transform[] seatingPositions)
+    public void SitGroupAtTable(Table table)
     {
-        for (int i = 0; i < customers.Length; i++)
-        {
-            customers[i].transform.position = seatingPositions[i].position;  // Seat each customer at their designated position
-        }
-    }
-
-    public bool IsGroupServed()
-    {
-        // Logic to check if all customers in the group have been served
         foreach (GameObject customer in customers)
         {
-            if (!customer.GetComponent<Customer>().IsServed)
-                return false;
+            Customer customerScript = customer.GetComponent<Customer>();
+            if (customerScript != null)
+            {
+                customerScript.SitAtTable();  // Each customer in the group sits at the table
+            }
         }
-        return true;
     }
 }
