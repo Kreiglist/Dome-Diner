@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -44,7 +44,6 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -277,11 +273,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8653016338717147852, guid: 50a11360d027d6a49a3528ee7f5d172a, type: 3}
-      propertyPath: connectedNodes.Array.data[0]
+      propertyPath: 'connectedNodes.Array.data[0]'
       value: 
       objectReference: {fileID: 702229259}
     - target: {fileID: 8653016338717147852, guid: 50a11360d027d6a49a3528ee7f5d172a, type: 3}
-      propertyPath: connectedNodes.Array.data[1]
+      propertyPath: 'connectedNodes.Array.data[1]'
       value: 
       objectReference: {fileID: 1865145872}
     m_RemovedComponents: []
@@ -413,11 +409,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8653016338717147852, guid: 50a11360d027d6a49a3528ee7f5d172a, type: 3}
-      propertyPath: connectedNodes.Array.data[0]
+      propertyPath: 'connectedNodes.Array.data[0]'
       value: 
       objectReference: {fileID: 1062982657}
     - target: {fileID: 8653016338717147852, guid: 50a11360d027d6a49a3528ee7f5d172a, type: 3}
-      propertyPath: connectedNodes.Array.data[1]
+      propertyPath: 'connectedNodes.Array.data[1]'
       value: 
       objectReference: {fileID: 1865145872}
     m_RemovedComponents: []
@@ -459,6 +455,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -624,11 +622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4036262421720991039, guid: 15df4219378a85649ada07f7e0907b91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4036262421720991039, guid: 15df4219378a85649ada07f7e0907b91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.14
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4036262421720991039, guid: 15df4219378a85649ada07f7e0907b91, type: 3}
       propertyPath: m_LocalPosition.z
@@ -765,11 +763,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8653016338717147852, guid: 50a11360d027d6a49a3528ee7f5d172a, type: 3}
-      propertyPath: connectedNodes.Array.data[0]
+      propertyPath: 'connectedNodes.Array.data[0]'
       value: 
       objectReference: {fileID: 1062982657}
     - target: {fileID: 8653016338717147852, guid: 50a11360d027d6a49a3528ee7f5d172a, type: 3}
-      propertyPath: connectedNodes.Array.data[1]
+      propertyPath: 'connectedNodes.Array.data[1]'
       value: 
       objectReference: {fileID: 702229259}
     m_RemovedComponents: []

@@ -21,9 +21,6 @@ public class PlayerMovement : MonoBehaviour
         // Get the position of the GameObject this script is attached to
         Vector3 playerPosition = transform.position;
 
-        // Print the coordinates to the console (for debugging)
-        // Debug.Log("Current Position: " + playerPosition);
-
         if (isMoving && currentTarget != null)
         {
             if (moveHorizontally)
@@ -38,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = newPos;
 
                 // If moving forward, enable the forward animation
-                if (playerPosition.y > initialPosition.y)
+                if (playerPosition.y < initialPosition.y)
                 {
                     animator.SetBool("isMovingForward", true); // Play forward movement animation
                 }

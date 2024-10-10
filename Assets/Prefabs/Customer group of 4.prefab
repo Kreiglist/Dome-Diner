@@ -374,7 +374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d200346a3f81bb4c869931e855d3f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsServed: 0
+  standingModel: {fileID: 0}
+  seatedModel: {fileID: 0}
+  eatingGIF: {fileID: 0}
+  readingMenuGIF: {fileID: 0}
+  readMenuTime: 5
+  eatingTime: 10
+  askBillTime: 3
 --- !u!1001 &2275566281625234589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -549,7 +555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d200346a3f81bb4c869931e855d3f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsServed: 0
+  standingModel: {fileID: 0}
+  seatedModel: {fileID: 0}
+  eatingGIF: {fileID: 0}
+  readingMenuGIF: {fileID: 0}
+  readMenuTime: 5
+  eatingTime: 10
+  askBillTime: 3
 --- !u!1001 &5324461457399468328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -719,7 +731,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d200346a3f81bb4c869931e855d3f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsServed: 0
+  standingModel: {fileID: 0}
+  seatedModel: {fileID: 0}
+  eatingGIF: {fileID: 0}
+  readingMenuGIF: {fileID: 0}
+  readMenuTime: 5
+  eatingTime: 10
+  askBillTime: 3
 --- !u!4 &9104670810603894550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4016648609862018622, guid: 0b3d3613e627bce47833f1e015c84c46, type: 3}
@@ -898,7 +916,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d200346a3f81bb4c869931e855d3f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsServed: 0
+  standingModel: {fileID: 0}
+  seatedModel: {fileID: 0}
+  eatingGIF: {fileID: 0}
+  readingMenuGIF: {fileID: 0}
+  readMenuTime: 5
+  eatingTime: 10
+  askBillTime: 3
 --- !u!4 &6582831147260449975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4016648609862018622, guid: 0b3d3613e627bce47833f1e015c84c46, type: 3}
