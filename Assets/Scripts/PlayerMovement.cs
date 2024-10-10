@@ -9,9 +9,21 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving = false; // Whether the player is currently moving
     private bool moveHorizontally = true; // Control whether to move horizontally first
     public Animator animator;
+    private Vector3 initialPosition;
+
+    void Start()
+    {
+        initialPosition = transform.position;
+    }
 
     void Update()
     {
+        // Get the position of the GameObject this script is attached to
+        Vector3 playerPosition = transform.position;
+
+        // Print the coordinates to the console (for debugging)
+        // Debug.Log("Current Position: " + playerPosition);
+
         if (isMoving && currentTarget != null)
         {
             if (moveHorizontally)
@@ -26,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = newPos;
 
                 // If moving forward, enable the forward animation
-                if (currentTarget.position.y > transform.position.y)
+                if (playerPosition.y > initialPosition.y)
                 {
                     animator.SetBool("isMovingForward", true); // Play forward movement animation
                 }
@@ -35,22 +47,26 @@ public class PlayerMovement : MonoBehaviour
                     animator.SetBool("isMovingForward", false); // Stop forward movement animation
                 }
 
-                // Flip the sprite based on the direction of movement
+                // Flip the sprite based on movement direction
                 if (currentTarget.position.x < transform.position.x)
                 {
                     // Moving left, flip the sprite
                     transform.localScale = new Vector3(-1, 1, 1);
+                    animator.SetBool("isWalkingSide", true);  // Set walking left/right animation
+                    animator.SetBool("isMovingForward", false); // Ensure forward animation is off
                 }
                 else if (currentTarget.position.x > transform.position.x)
                 {
                     // Moving right, set sprite to default scale
                     transform.localScale = new Vector3(1, 1, 1);
+                    animator.SetBool("isWalkingSide", true);  // Set walking left/right animation
+                    animator.SetBool("isMovingForward", false); // Ensure forward animation is off
                 }
 
-                    // If horizontal movement is complete, switch to vertical movement
-                    if (Mathf.Abs(transform.position.x - currentTarget.position.x) < 0.1f)
+                if (Mathf.Abs(transform.position.x - currentTarget.position.x) < 0.1f)
                 {
                     moveHorizontally = false;
+                    animator.SetBool("isWalkingSide", false); // Stop horizontal walking animation when done
                 }
             }
             else
@@ -85,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
             // If the player is not moving, set the moveSpeed to 0
             animator.SetFloat("moveSpeed", 0f);
             animator.SetBool("isMovingForward", false);
+            animator.SetBool("isWalkingSide", false);
         }
     }
 
