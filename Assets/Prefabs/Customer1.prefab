@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4016648609862018622}
   - component: {fileID: 308450919651946171}
-  - component: {fileID: 7999404617326610005}
+  - component: {fileID: 226720304081539987}
+  - component: {fileID: 3392589667387748438}
   m_Layer: 0
   m_Name: Customer1
   m_TagString: Untagged
@@ -50,6 +51,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7999404617326610005
+--- !u!114 &226720304081539987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,6 +97,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5425914167409628213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 539dfc31ae0d55541ba28ce9ebe6bd41, type: 3}
+  m_Script: {fileID: 11500000, guid: 969273056973b3d4a85f6c0d2347420f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3392589667387748438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5425914167409628213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d200346a3f81bb4c869931e855d3f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standingModel: {fileID: 5425914167409628213}
+  seatedModel: {fileID: 682206424279346072, guid: 6bb1a4fdba2eeea44a1ebdd6064daef0, type: 3}
+  eatingGIF: {fileID: 0}
+  readingMenuGIF: {fileID: 0}
+  readMenuTime: 5
+  eatingTime: 10
+  askBillTime: 3
