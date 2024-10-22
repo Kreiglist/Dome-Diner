@@ -1,11 +1,9 @@
 using UnityEngine;
 using System.Collections;
-public class Customer : MonoBehaviour
+public class CustomerTest : MonoBehaviour
 {
-    public GameObject standingModel;      // Reference to the standing customer model
-    public GameObject seatedModel;        // Reference to the seated customer model (or seated animation)
-    public SpriteRenderer eatingGIF;      // GIF or sprite for eating animation
-    public SpriteRenderer readingMenuGIF; // GIF or sprite for reading menu animation
+/*    public SpriteRenderer eatingGIF;      // GIF or sprite for eating animation
+    public SpriteRenderer readingMenuGIF; // GIF or sprite for reading menu animation*/
 
     public float readMenuTime = 5f;
     public float eatingTime = 10f;
@@ -14,17 +12,13 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         // Start with standing model
-        standingModel.SetActive(true);
-        seatedModel.SetActive(false);
-        eatingGIF.gameObject.SetActive(false);
-        readingMenuGIF.gameObject.SetActive(false);
+        /*eatingGIF.gameObject.SetActive(false);
+        readingMenuGIF.gameObject.SetActive(false);*/
     }
 
     // Called when customer is seated at the table
     public void SitAtTable()
     {
-        standingModel.SetActive(false);  // Hide standing model
-        seatedModel.SetActive(true);     // Show seated model
         Debug.Log("Customer is seated.");
         StartCustomerSequence();
     }
@@ -38,16 +32,16 @@ public class Customer : MonoBehaviour
     private IEnumerator CustomerSequence()
     {
         // Step 1: Read the Menu
-        readingMenuGIF.gameObject.SetActive(true);  // Show reading menu GIF
+        /*readingMenuGIF.gameObject.SetActive(true);  // Show reading menu GIF*/
         Debug.Log("Customer is reading the menu.");
         yield return new WaitForSeconds(readMenuTime);
-        readingMenuGIF.gameObject.SetActive(false);  // Hide reading menu GIF
+       /* readingMenuGIF.gameObject.SetActive(false);  // Hide reading menu GIF*/
 
         // Step 2: Eating
-        eatingGIF.gameObject.SetActive(true);  // Show eating GIF
+        /*eatingGIF.gameObject.SetActive(true);  // Show eating GIF*/
         Debug.Log("Customer is eating.");
         yield return new WaitForSeconds(eatingTime);
-        eatingGIF.gameObject.SetActive(false);  // Hide eating GIF
+        /*eatingGIF.gameObject.SetActive(false);  // Hide eating GIF*/
 
         // Step 3: Ask for Bill
         Debug.Log("Customer is asking for the bill.");

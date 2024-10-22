@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: c96c91afcc5a3954ab86d63fdd44aad2
+guid: 3b03a5573b0322941a713f6c318d6d79
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9082371353445358108
-    second: Customer 1_0
+      213: -7994642848376602960
+    second: EatAnimation_0
+  - first:
+      213: 4128045358690547492
+    second: EatAnimation_1
+  - first:
+      213: 8975799714590174027
+    second: EatAnimation_2
+  - first:
+      213: 9038846755587127851
+    second: EatAnimation_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1080
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Customer 1_0
+      name: EatAnimation_0
       rect:
         serializedVersion: 2
-        x: 247
-        y: 0
-        width: 622
-        height: 1736
+        x: 26
+        y: 22
+        width: 19
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +123,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1a5b4020a01b0e70800000000000000
-      internalID: 9082371353445358108
+      spriteID: 0be3564dfa25d0190800000000000000
+      internalID: -7994642848376602960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EatAnimation_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 22
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4273375e163c94930800000000000000
+      internalID: 4128045358690547492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EatAnimation_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 22
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4b233bd842709c70800000000000000
+      internalID: 8975799714590174027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EatAnimation_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 22
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a76fdfb3f607d70800000000000000
+      internalID: 9038846755587127851
       vertices: []
       indices: 
       edges: []
@@ -131,7 +203,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Customer 1_0: 9082371353445358108
+      EatAnimation_0: -7994642848376602960
+      EatAnimation_1: 4128045358690547492
+      EatAnimation_2: 8975799714590174027
+      EatAnimation_3: 9038846755587127851
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

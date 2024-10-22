@@ -19,7 +19,7 @@ public class DraggableCustomerGroup : MonoBehaviour
             if (currentHoveredTable != null)
             {
                 // Snap to the seating position of the hovered table
-                transform.position = currentHoveredTable.seatingPosition.position;
+                //transform.position = currentHoveredTable.seatingPosition.position;
                 ChangeToSeatedPose(); // Change the customer group to a seated pose
             }
             else

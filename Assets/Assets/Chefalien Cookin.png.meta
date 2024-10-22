@@ -1,0 +1,618 @@
+fileFormatVersion: 2
+guid: 425055e36ce4c724a88a8fc4cd33fa4f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5429513415673335319
+    second: Chefalien Cookin_0
+  - first:
+      213: 6146770864830282343
+    second: Chefalien Cookin_1
+  - first:
+      213: -58836436751419585
+    second: Chefalien Cookin_2
+  - first:
+      213: -9099922604614814899
+    second: Chefalien Cookin_3
+  - first:
+      213: -613969105094212386
+    second: Chefalien Cookin_4
+  - first:
+      213: -3745166255940101801
+    second: Chefalien Cookin_5
+  - first:
+      213: -370987520309096691
+    second: Chefalien Cookin_6
+  - first:
+      213: -4703571509660585148
+    second: Chefalien Cookin_7
+  - first:
+      213: -7718415249075918480
+    second: Chefalien Cookin_8
+  - first:
+      213: -7481924673671640111
+    second: Chefalien Cookin_9
+  - first:
+      213: -2018503571796653405
+    second: Chefalien Cookin_10
+  - first:
+      213: -8894925819602554821
+    second: Chefalien Cookin_11
+  - first:
+      213: -1653790034189261070
+    second: Chefalien Cookin_12
+  - first:
+      213: 2390051891488549151
+    second: Chefalien Cookin_13
+  - first:
+      213: 7313147300638542792
+    second: Chefalien Cookin_14
+  - first:
+      213: -6032384206873009618
+    second: Chefalien Cookin_15
+  - first:
+      213: -4939892077927772213
+    second: Chefalien Cookin_16
+  - first:
+      213: 5869578755987502351
+    second: Chefalien Cookin_17
+  - first:
+      213: -1276139968537902763
+    second: Chefalien Cookin_18
+  - first:
+      213: 2024341797425456781
+    second: Chefalien Cookin_19
+  - first:
+      213: -7192143092401373429
+    second: Chefalien Cookin_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chefalien Cookin_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e4d6c4fa1895b40800000000000000
+      internalID: 5429513415673335319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76afde9d887bd4550800000000000000
+      internalID: 6146770864830282343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f37f49f8298fe2ff0800000000000000
+      internalID: -58836436751419585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43f264ca9496b180800000000000000
+      internalID: -9099922604614814899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed48bc31a5eba77f0800000000000000
+      internalID: -613969105094212386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75919e9022f760cc0800000000000000
+      internalID: -3745166255940101801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f8fdbd0dcf9daf0800000000000000
+      internalID: -370987520309096691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 443780fe1ae89beb0800000000000000
+      internalID: -4703571509660585148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_8
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0792fd1993ea2e490800000000000000
+      internalID: -7718415249075918480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_9
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1db4295762dda2890800000000000000
+      internalID: -7481924673671640111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa043922b5dcf3e0800000000000000
+      internalID: -2018503571796653405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30b32b2810ee8480800000000000000
+      internalID: -8894925819602554821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_12
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6611fd9be8c09e0800000000000000
+      internalID: -1653790034189261070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f19ece2488b2b2120800000000000000
+      internalID: 2390051891488549151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_14
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbcaa429b48d7560800000000000000
+      internalID: 7313147300638542792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2268a8568aa84ca0800000000000000
+      internalID: -6032384206873009618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_16
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcf495ae35af17bb0800000000000000
+      internalID: -4939892077927772213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0570dbb7cee47150800000000000000
+      internalID: 5869578755987502351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_18
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 551ce9bb57d3a4ee0800000000000000
+      internalID: -1276139968537902763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_19
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d86258ba328e71c10800000000000000
+      internalID: 2024341797425456781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chefalien Cookin_20
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 3
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0ff2ab86ff503c90800000000000000
+      internalID: -7192143092401373429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
