@@ -88,28 +88,3 @@ public class DraggableCustomerGroup : MonoBehaviour
         // This could involve enabling the original animation or sprite
     }
 }
-
-/*private bool dragging = false;
-    private Vector3 offset;
-
-    private void Update()
-    {
-        if (dragging)
-        {
-            // Move object, taking account original offset
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
-    }
-
-    private void OnMouseDown()
-    {
-        // Record the difference between object centre and clicked point on the camera plane
-        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        dragging = true;
-    }
-
-    private void OnMouseUp()
-    {
-        // Stop dragging
-        dragging = false;
-    }*/
