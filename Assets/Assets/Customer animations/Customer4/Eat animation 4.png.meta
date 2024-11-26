@@ -202,7 +202,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Eat animation 4_0: 3788990841359066542
+      Eat animation 4_1: 2852363871396476129
+      Eat animation 4_2: 7809404428297873512
+      Eat animation 4_3: 3820079351326073539
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -346,7 +346,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Order animation_0: -254248095543032315
+      Order animation_1: -2064767855347239478
+      Order animation_2: 9211212002910451216
+      Order animation_3: -8628593193634319055
+      Order animation_4: -5615441013960395180
+      Order animation_5: 1394349790907720274
+      Order animation_6: 6142975844341219544
+      Order animation_7: 3914757694220286153
+      Order animation_8: -8375439321273713075
+      Order animation_9: 2045512378441792283
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

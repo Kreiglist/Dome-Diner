@@ -1,34 +1,43 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TableSpawner : MonoBehaviour
 {
-    public GameObject tablePrefab;
-    public Transform[] tableNodes; // Pre-placed table nodes
+    public GameObject tablePrefab; // Prefab for the table
+    public List<TableNode> tableNodes; // List of TableNode references in the scene
     public int numberOfTablesToSpawn = 5; // Number of tables to spawn
 
     private void Start()
     {
+        if (tablePrefab == null)
+        {
+            Debug.LogError("Table prefab is not assigned.");
+            return;
+        }
+
+        if (tableNodes == null || tableNodes.Count == 0)
+        {
+            Debug.LogError("TableNodes list is empty or unassigned.");
+            return;
+        }
+
         SpawnTables();
     }
 
     private void SpawnTables()
     {
-        System.Collections.Generic.List<int> usedIndices = new System.Collections.Generic.List<int>();
+        List<TableNode> availableNodes = new List<TableNode>(tableNodes);
 
-        for (int i = 0; i < numberOfTablesToSpawn; i++)
+        for (int i = 0; i < numberOfTablesToSpawn && availableNodes.Count > 0; i++)
         {
-            int randomIndex;
+            int randomIndex = Random.Range(0, availableNodes.Count);
+            TableNode selectedNode = availableNodes[randomIndex];
 
-            // Ensure a unique node index is selected
-            do
+            if (selectedNode != null && !selectedNode.isOccupied)
             {
-                randomIndex = Random.Range(0, tableNodes.Length);
-            } while (usedIndices.Contains(randomIndex));
-
-            usedIndices.Add(randomIndex);
-
-            // Instantiate table at the selected node
-            Instantiate(tablePrefab, tableNodes[randomIndex].position, Quaternion.identity);
+                selectedNode.SpawnTable(tablePrefab);
+                availableNodes.RemoveAt(randomIndex); // Remove the used node
+            }
         }
     }
 }

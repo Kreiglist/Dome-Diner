@@ -2,19 +2,32 @@ using UnityEngine;
 
 public class Clickable : MonoBehaviour
 {
-    public Transform nodeToMoveTo; // The node the player should move to when this object is clicked
+    public PathNode associatedNode; // The PathNode this object points to
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-        // Find the player GameObject and queue the movement to the target node
+        if (associatedNode == null)
+        {
+            Debug.LogWarning($"{gameObject.name} does not have an associated PathNode.");
+            return;
+        }
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
-                playerMovement.QueueMovement(nodeToMoveTo); // Queue the movement
+                playerMovement.QueueMovement(associatedNode);
             }
+            else
+            {
+                Debug.LogError("Player is missing the PlayerMovement script.");
+            }
+        }
+        else
+        {
+            Debug.LogError("No GameObject tagged 'Player' found in the scene.");
         }
     }
 }

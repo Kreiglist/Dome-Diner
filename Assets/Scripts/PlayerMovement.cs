@@ -4,125 +4,219 @@ using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of movement
-    private Queue<Transform> movementQueue = new Queue<Transform>(); // Queue to store movement targets
-    private Transform currentTarget; // The current node the player is moving towards
+    public Animator animator; // Animator for character animations
+    public PathNode initialSpawnNode; // The initial spawn node for the player
+    private PathNode currentNode; // Current node the player is at
+    private Queue<PathNode> movementQueue = new Queue<PathNode>(); // Queue to store the path to follow
+    private PathNode currentTarget; // Current node the player is moving towards
     private bool isMoving = false; // Whether the player is currently moving
     private bool moveHorizontally = true; // Control whether to move horizontally first
-    public Animator animator;
-    private Vector3 initialPosition;
 
-    void Start()
+    private void Start()
     {
-        initialPosition = transform.position;
-    }
-
-    void Update()
-    {
-        // Get the position of the GameObject this script is attached to
-        Vector3 playerPosition = transform.position;
-
-        if (isMoving && currentTarget != null)
+        if (initialSpawnNode != null)
         {
-            if (moveHorizontally)
-            {
-                // Move horizontally towards the target's X position
-                float step = moveSpeed * Time.deltaTime;
-                Vector3 newPos = new Vector3(
-                    Mathf.MoveTowards(transform.position.x, currentTarget.position.x, step),
-                    transform.position.y,
-                    transform.position.z
-                );
-                transform.position = newPos;
-
-                // If moving forward, enable the forward animation
-                if (playerPosition.y < initialPosition.y)
-                {
-                    animator.SetBool("isMovingForward", true); // Play forward movement animation
-                }
-                else
-                {
-                    animator.SetBool("isMovingForward", false); // Stop forward movement animation
-                }
-
-                // Flip the sprite based on movement direction
-                if (currentTarget.position.x < transform.position.x)
-                {
-                    // Moving left, flip the sprite
-                    transform.localScale = new Vector3(-1, 1, 1);
-                    animator.SetBool("isWalkingSide", true);  // Set walking left/right animation
-                    animator.SetBool("isMovingForward", false); // Ensure forward animation is off
-                }
-                else if (currentTarget.position.x > transform.position.x)
-                {
-                    // Moving right, set sprite to default scale
-                    transform.localScale = new Vector3(1, 1, 1);
-                    animator.SetBool("isWalkingSide", true);  // Set walking left/right animation
-                    animator.SetBool("isMovingForward", false); // Ensure forward animation is off
-                }
-
-                if (Mathf.Abs(transform.position.x - currentTarget.position.x) < 0.1f)
-                {
-                    moveHorizontally = false;
-                    animator.SetBool("isWalkingSide", false); // Stop horizontal walking animation when done
-                }
-            }
-            else
-            {
-                // Move vertically towards the target's Y position after horizontal movement is done
-                float step = moveSpeed * Time.deltaTime;
-                Vector3 newPos = new Vector3(
-                    transform.position.x,
-                    Mathf.MoveTowards(transform.position.y, currentTarget.position.y, step),
-                    transform.position.z
-                );
-                transform.position = newPos;
-
-                // If vertical movement is complete, stop moving and dequeue the next target
-                if (Mathf.Abs(transform.position.y - currentTarget.position.y) < 0.1f)
-                {
-                    isMoving = false;
-                    currentTarget = null;
-
-                    // Check if there are more nodes in the queue to move to
-                    if (movementQueue.Count > 0)
-                    {
-                        MoveToNextNode();
-                    }
-                }
-            }
-            // Set animator's moveSpeed parameter based on movement speed
-            animator.SetFloat("moveSpeed", moveSpeed);
+            currentNode = initialSpawnNode;
+            transform.position = currentNode.transform.position; // Set player position to the initial node
+            Debug.Log($"Player spawned at: {currentNode.name} at position {currentNode.transform.position}");
         }
         else
         {
-            // If the player is not moving, set the moveSpeed to 0
-            animator.SetFloat("moveSpeed", 0f);
-            animator.SetBool("isMovingForward", false);
-            animator.SetBool("isWalkingSide", false);
+            Debug.LogError("Initial spawn node is not set!");
         }
     }
 
-    // Call this method when a new object is clicked
-    public void QueueMovement(Transform targetNode)
+    private void Update()
     {
-        // Add the clicked node to the movement queue
-        movementQueue.Enqueue(targetNode);
+        if (isMoving && currentTarget != null)
+        {
+            MoveTowardsTarget();
+        }
+        else if (!isMoving)
+        {
+            ResetAnimations();
+        }
+    }
 
-        // If the player is not currently moving, start moving towards the first node
-        if (!isMoving)
+    private void MoveTowardsTarget()
+    {
+        Vector3 targetPosition = currentTarget.transform.position;
+        Vector3 currentPosition = transform.position;
+
+        if (moveHorizontally)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            transform.position = new Vector3(
+                Mathf.MoveTowards(currentPosition.x, targetPosition.x, step),
+                currentPosition.y,
+                currentPosition.z
+            );
+
+            HandleHorizontalAnimation(currentPosition, targetPosition);
+
+            if (Mathf.Abs(currentPosition.x - targetPosition.x) < 0.1f)
+            {
+                moveHorizontally = false;
+                animator.SetBool("isWalkingSide", false);
+            }
+        }
+        else
+        {
+            float step = moveSpeed * Time.deltaTime;
+            transform.position = new Vector3(
+                currentPosition.x,
+                Mathf.MoveTowards(currentPosition.y, targetPosition.y, step),
+                currentPosition.z
+            );
+
+            if (Mathf.Abs(currentPosition.y - targetPosition.y) < 0.1f)
+            {
+                FinishMovement();
+            }
+        }
+
+        animator.SetFloat("moveSpeed", moveSpeed);
+    }
+
+    private void FinishMovement()
+    {
+        Debug.Log($"Arrived at target: {currentTarget.name}");
+        isMoving = false;
+        currentNode = currentTarget; // Update the current node to the target node
+        currentTarget = null;
+
+        if (movementQueue.Count > 0)
         {
             MoveToNextNode();
         }
+        else
+        {
+            Debug.Log("No more nodes in the queue.");
+        }
     }
 
-    // Move to the next node in the queue
+    private void HandleHorizontalAnimation(Vector3 currentPosition, Vector3 targetPosition)
+    {
+        if (targetPosition.x < currentPosition.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); // Flip sprite for left movement
+            animator.SetBool("isWalkingSide", true);
+        }
+        else if (targetPosition.x > currentPosition.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1); // Default sprite for right movement
+            animator.SetBool("isWalkingSide", true);
+        }
+    }
+
+    private void ResetAnimations()
+    {
+        animator.SetFloat("moveSpeed", 0f);
+        animator.SetBool("isMovingForward", false);
+        animator.SetBool("isWalkingSide", false);
+    }
+
+    public void QueueMovement(PathNode targetNode)
+    {
+        // Perform pathfinding to generate the path
+        List<PathNode> path = FindPath(currentNode, targetNode);
+
+        if (path != null)
+        {
+            foreach (PathNode node in path)
+            {
+                movementQueue.Enqueue(node);
+            }
+
+            if (!isMoving)
+            {
+                MoveToNextNode();
+            }
+        }
+        else
+        {
+            Debug.LogError($"No path found from {currentNode.name} to {targetNode.name}");
+        }
+    }
+
     private void MoveToNextNode()
     {
         if (movementQueue.Count > 0)
         {
             currentTarget = movementQueue.Dequeue();
             isMoving = true;
-            moveHorizontally = true; // Start by moving horizontally first
+            moveHorizontally = true;
+            Debug.Log($"Moving to next node: {currentTarget.name}");
         }
+    }
+
+    private List<PathNode> FindPath(PathNode startNode, PathNode targetNode)
+    {
+        List<PathNode> openSet = new List<PathNode>(); // Nodes to evaluate
+        HashSet<PathNode> closedSet = new HashSet<PathNode>(); // Nodes already evaluated
+        openSet.Add(startNode);
+
+        while (openSet.Count > 0)
+        {
+            PathNode currentNode = openSet[0];
+            foreach (PathNode node in openSet)
+            {
+                if (node.fCost < currentNode.fCost || 
+                    (node.fCost == currentNode.fCost && node.hCost < currentNode.hCost))
+                {
+                    currentNode = node;
+                }
+            }
+
+            openSet.Remove(currentNode);
+            closedSet.Add(currentNode);
+
+            if (currentNode == targetNode)
+            {
+                return RetracePath(startNode, targetNode);
+            }
+
+            foreach (PathNode neighbor in currentNode.connectedNodes)
+            {
+                if (neighbor.isOccupied || closedSet.Contains(neighbor))
+                    continue;
+
+                int newCostToNeighbor = currentNode.gCost + GetDistance(currentNode, neighbor);
+                if (newCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
+                {
+                    neighbor.gCost = newCostToNeighbor;
+                    neighbor.hCost = GetDistance(neighbor, targetNode);
+                    neighbor.parent = currentNode;
+
+                    if (!openSet.Contains(neighbor))
+                    {
+                        openSet.Add(neighbor);
+                    }
+                }
+            }
+        }
+
+        return null; // No path found
+    }
+
+    private List<PathNode> RetracePath(PathNode startNode, PathNode endNode)
+    {
+        List<PathNode> path = new List<PathNode>();
+        PathNode currentNode = endNode;
+
+        while (currentNode != startNode)
+        {
+            path.Add(currentNode);
+            currentNode = currentNode.parent;
+        }
+        path.Reverse();
+        return path;
+    }
+
+    private int GetDistance(PathNode nodeA, PathNode nodeB)
+    {
+        int dx = Mathf.Abs(nodeA.gridX - nodeB.gridX);
+        int dy = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+        return dx + dy;
     }
 }
