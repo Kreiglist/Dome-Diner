@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5554350486423099068}
   - component: {fileID: 1590447832594140937}
   - component: {fileID: 7692954213445568331}
+  - component: {fileID: -4489450381625532188}
   m_Layer: 3
   m_Name: Chair
   m_TagString: Untagged
@@ -71,7 +72,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1166667, y: 1.550926}
+    oldSize: {x: 6.03, y: 8.375}
     newSize: {x: 1.1777344, y: 1.6357422}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,3 +134,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4489450381625532188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000424382020182298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb649c06505664f4b9c5ee22ffb3e3e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customer: {fileID: 7592822450565952373, guid: 95c6e56ee085b6b49873b41aac41156b, type: 3}
+  target: {fileID: 9000424382020182298}
