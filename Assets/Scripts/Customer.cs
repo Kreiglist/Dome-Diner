@@ -1,67 +1,99 @@
 using UnityEngine;
-using System.Collections;
+
 public class Customer : MonoBehaviour
 {
-    public GameObject standingModel;      // Reference to the standing customer model
-    public GameObject seatedModel;        // Reference to the seated customer model (or seated animation)
-    public SpriteRenderer eatingGIF;      // GIF or sprite for eating animation
-    public SpriteRenderer readingMenuGIF; // GIF or sprite for reading menu animation
-
-    public float readMenuTime = 5f;
-    public float eatingTime = 10f;
-    public float askBillTime = 3f;
+    private bool isDragging = false; // Whether the customer is being dragged
+    private Vector3 offset; // Offset for accurate dragging
+    private Camera mainCamera; // Main camera for screen-to-world point conversion
+    private Vector3 initialPosition; // Original spawn position of the customer
+    private Transform spawnNode; // The node where the customer was spawned
 
     private void Start()
     {
-        // Start with standing model
-        standingModel.SetActive(true);
-        seatedModel.SetActive(false);
-        eatingGIF.gameObject.SetActive(false);
-        readingMenuGIF.gameObject.SetActive(false);
+        mainCamera = Camera.main; // Cache the main camera
+        initialPosition = transform.position; // Store the original position
     }
 
-    // Called when customer is seated at the table
-    public void SitAtTable()
+    private void Update()
     {
-        standingModel.SetActive(false);  // Hide standing model
-        seatedModel.SetActive(true);     // Show seated model
-        Debug.Log("Customer is seated.");
-        StartCustomerSequence();
+        // Handle dragging logic
+        if (isDragging)
+        {
+            Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(mousePosition.x - offset.x, mousePosition.y - offset.y, 0);
+        }
     }
 
-    // Start the sequence of actions: reading menu, eating, asking for bill
-    private void StartCustomerSequence()
+    private void OnMouseDown()
     {
-        StartCoroutine(CustomerSequence());
+        // Start dragging
+        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        offset = mousePosition - transform.position;
+        isDragging = true;
     }
 
-    private IEnumerator CustomerSequence()
+    private void OnMouseUp()
     {
-        // Step 1: Read the Menu
-        readingMenuGIF.gameObject.SetActive(true);  // Show reading menu GIF
-        Debug.Log("Customer is reading the menu.");
-        yield return new WaitForSeconds(readMenuTime);
-        readingMenuGIF.gameObject.SetActive(false);  // Hide reading menu GIF
+        // Stop dragging
+        isDragging = false;
 
-        // Step 2: Eating
-        eatingGIF.gameObject.SetActive(true);  // Show eating GIF
-        Debug.Log("Customer is eating.");
-        yield return new WaitForSeconds(eatingTime);
-        eatingGIF.gameObject.SetActive(false);  // Hide eating GIF
-
-        // Step 3: Ask for Bill
-        Debug.Log("Customer is asking for the bill.");
-        yield return new WaitForSeconds(askBillTime);
-
-        // Step 4: Leave (could trigger an exit animation, destroy object, etc.)
-        LeaveTable();
+        // Check if the customer was dropped on a table
+        HandleDrop();
     }
 
-    // Handles leaving the table after eating
-    public void LeaveTable()
+    private void HandleDrop()
     {
-        Debug.Log("Customer is leaving.");
-        // You can destroy the customer object or trigger an exit animation here
-        Destroy(this.gameObject);
+        float detectionRadius = 0.5f;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Table"))
+            {
+                Table table = hitCollider.GetComponent<Table>();
+                if (table != null)
+                {
+                    Debug.Log($"Customer dropped on table: {table.name}");
+                    table.HandleCustomerDrop(this);
+                    MarkNodeAsAvailable(); // Free the spawn node
+                    Destroy(gameObject); // Destroy customer after successful drop
+                    return;
+                }
+            }
+        }
+
+        // If no valid table was found, return to original position
+        Debug.Log("Customer not dropped on a valid table. Returning to initial position.");
+        transform.position = initialPosition;
+    }
+
+    public void SetSpawnNode(Transform node)
+    {
+        spawnNode = node;
+        MarkNodeAsUnavailable();
+    }
+
+    private void MarkNodeAsUnavailable()
+    {
+        if (spawnNode != null)
+        {
+            var nodeScript = spawnNode.GetComponent<PathNode>();
+            if (nodeScript != null)
+            {
+                nodeScript.SetOccupied(true);
+            }
+        }
+    }
+
+    private void MarkNodeAsAvailable()
+    {
+        if (spawnNode != null)
+        {
+            var nodeScript = spawnNode.GetComponent<PathNode>();
+            if (nodeScript != null)
+            {
+                nodeScript.SetOccupied(false);
+            }
+        }
     }
 }

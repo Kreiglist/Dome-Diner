@@ -322,7 +322,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Read animation 5_0: -2967267103029510258
+      Read animation 5_1: -4409501075798676165
+      Read animation 5_2: 6777940351531240494
+      Read animation 5_3: -797154222850235090
+      Read animation 5_4: -250502545868367781
+      Read animation 5_5: 6878824395537978084
+      Read animation 5_6: -5325919475188508004
+      Read animation 5_7: -5333629769808830733
+      Read animation 5_8: 1288388476984302522
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,14 +1,54 @@
-
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    public GameObject[] customerPrefabs;  // Array of different customer prefabs
-    public Transform spawnPoint;  // Spawn point for customers
+    public GameObject customerPrefab; // Customer prefab to spawn
+    public List<Transform> spawnNodes; // List of node positions where customers can spawn
+    public int maxCustomersToSpawn = 10; // Maximum number of customers to spawn
+    public float minSpawnCooldown = 2f; // Minimum cooldown between spawns
+    public float maxSpawnCooldown = 5f; // Maximum cooldown between spawns
 
-    public void SpawnCustomer()
+    private int spawnedCustomers = 0; // Track the number of spawned customers
+
+    private void Start()
     {
-        int randomIndex = Random.Range(0, customerPrefabs.Length);
-        Instantiate(customerPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+        StartCoroutine(SpawnCustomers());
+    }
+
+    private IEnumerator SpawnCustomers()
+    {
+        while (spawnedCustomers < maxCustomersToSpawn)
+        {
+            yield return new WaitForSeconds(Random.Range(minSpawnCooldown, maxSpawnCooldown));
+
+            Transform availableNode = GetAvailableNode();
+            if (availableNode != null)
+            {
+                SpawnCustomer(availableNode);
+            }
+        }
+
+        Debug.Log("Customer spawning complete.");
+    }
+
+    private Transform GetAvailableNode()
+    {
+        foreach (Transform node in spawnNodes)
+        {
+            if (node.childCount == 0) // Check if the node is available
+            {
+                return node;
+            }
+        }
+        return null; // No available nodes
+    }
+
+    private void SpawnCustomer(Transform node)
+    {
+        GameObject customer = Instantiate(customerPrefab, node.position, Quaternion.identity);
+        spawnedCustomers++;
+        Debug.Log($"Customer spawned at node: {node.name}");
     }
 }
