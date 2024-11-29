@@ -1,21 +1,49 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
     private bool isDragging = false; // Whether the customer is being dragged
     private Vector3 offset; // Offset for accurate dragging
     private Camera mainCamera; // Main camera for screen-to-world point conversion
-    private Vector3 initialPosition; // Original spawn position of the customer
     private Transform spawnNode; // The node where the customer was spawned
+
+    public float patience = 15f; // Patience timer in seconds
+    public Slider patienceSlider; // Optional: Attach a UI slider to display patience visually
+    private bool isDespawned = false; // Tracks if the customer is already despawned
 
     private void Start()
     {
         mainCamera = Camera.main; // Cache the main camera
-        initialPosition = transform.position; // Store the original position
+
+        // Initialize the patience slider if available
+        if (patienceSlider != null)
+        {
+            patienceSlider.maxValue = patience;
+            patienceSlider.value = patience;
+        }
     }
 
     private void Update()
     {
+        // Handle patience timer
+        if (!isDragging && !isDespawned)
+        {
+            patience -= Time.deltaTime;
+
+            // Update patience slider if available
+            if (patienceSlider != null)
+            {
+                patienceSlider.value = patience;
+            }
+
+            // Despawn the customer if patience reaches zero
+            if (patience <= 0)
+            {
+                DespawnCustomer();
+            }
+        }
+
         // Handle dragging logic
         if (isDragging)
         {
@@ -55,7 +83,7 @@ public class Customer : MonoBehaviour
                 {
                     Debug.Log($"Customer dropped on table: {table.name}");
                     table.HandleCustomerDrop(this);
-                    MarkNodeAsAvailable(); // Free the spawn node
+                    FreeSpawnNode(); // Free the spawn node
                     Destroy(gameObject); // Destroy customer after successful drop
                     return;
                 }
@@ -64,7 +92,7 @@ public class Customer : MonoBehaviour
 
         // If no valid table was found, return to original position
         Debug.Log("Customer not dropped on a valid table. Returning to initial position.");
-        transform.position = initialPosition;
+        transform.position = spawnNode.position; // Return to spawn node
     }
 
     public void SetSpawnNode(Transform node)
@@ -85,15 +113,24 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void MarkNodeAsAvailable()
+    public void FreeSpawnNode()
     {
         if (spawnNode != null)
         {
             var nodeScript = spawnNode.GetComponent<PathNode>();
             if (nodeScript != null)
             {
-                nodeScript.SetOccupied(false);
+                nodeScript.SetOccupied(false); // Mark the node as free
+                Debug.Log($"Node {spawnNode.name} is now free.");
             }
         }
+    }
+
+    private void DespawnCustomer()
+    {
+        isDespawned = true; // Mark as despawned
+        Debug.Log("Customer despawned due to patience timeout.");
+        FreeSpawnNode(); // Free the spawn node
+        Destroy(gameObject); // Remove the customer
     }
 }
