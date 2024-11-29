@@ -128,7 +128,7 @@ private IEnumerator TableCycle()
 
     private IEnumerator EatingTimer()
     {
-        yield return new WaitForSeconds(Random.Range(10f, 15f));
+        yield return new WaitForSeconds(15f);
         Destroy(currentCustomer);
         StartOrderPhaseWithDirtyPlate();
     }
