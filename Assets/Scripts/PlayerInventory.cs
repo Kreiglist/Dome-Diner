@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI; // For handling the UI elements
+using UnityEngine.UI; // For handling UI elements
+using TMPro; // For TextMeshProUGUI
 using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
@@ -8,9 +9,10 @@ public class PlayerInventory : MonoBehaviour
     public Sprite emptySlotSprite; // Sprite to represent an empty slot
     public Sprite orderPaperSprite; // Sprite for order paper
     public Sprite foodSprite; // Sprite for food
-    public Text[] itemSlotTexts; // Text components to display table IDs on each slot
+    public Sprite emptyPlateSprite; // Sprite for empty plate
+    public TextMeshProUGUI[] itemSlotTexts; // TextMeshPro components to display table IDs on each slot
 
-    private string[] items = new string[2]; // Internal inventory: "OrderPaper:<TableID>" or "Food:<TableID>"
+    private string[] items = new string[2]; // Internal inventory: "OrderPaper:<TableID>", "Food:<TableID>", or "EmptyPlate:<TableID>"
 
     private void Start()
     {
@@ -25,6 +27,24 @@ public class PlayerInventory : MonoBehaviour
     {
         string item = $"OrderPaper:{tableID}";
         return AddItem(item, orderPaperSprite, tableID); // Pass `tableID` as an int
+    }
+
+    /// <summary>
+    /// Adds food to the inventory with the given table ID.
+    /// </summary>
+    public bool AddFood(int tableID)
+    {
+        string item = $"Food:{tableID}";
+        return AddItem(item, foodSprite, tableID); // Pass `tableID` as an int
+    }
+
+    /// <summary>
+    /// Adds an empty plate to the inventory with the given table ID.
+    /// </summary>
+    public bool AddEmptyPlate(int tableID)
+    {
+        string item = $"EmptyPlate:{tableID}";
+        return AddItem(item, emptyPlateSprite, tableID); // Pass `tableID` as an int
     }
 
     /// <summary>

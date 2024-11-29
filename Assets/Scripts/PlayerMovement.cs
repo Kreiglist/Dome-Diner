@@ -69,9 +69,25 @@ public class PlayerMovement : MonoBehaviour
                 currentPosition.z
             );
 
+            if (targetPosition.y > currentPosition.y)
+            {
+                // Upward movement
+                animator.Play("astro_walk_back");
+            }
+            else if (targetPosition.y < currentPosition.y)
+            {
+                // Downward movement
+                animator.Play("astro_walk_front");
+            }
+            else
+            {
+                animator.SetBool("isMovingUp", false);
+            }
+
             if (Mathf.Abs(currentPosition.y - targetPosition.y) < 0.1f)
             {
                 FinishMovement();
+                animator.Play("astro_idle");
             }
         }
 
@@ -154,61 +170,54 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   private List<PathNode> FindPath(PathNode startNode, PathNode targetNode)
-{
-    List<PathNode> openSet = new List<PathNode>(); // Nodes to evaluate
-    HashSet<PathNode> closedSet = new HashSet<PathNode>(); // Nodes already evaluated
-    openSet.Add(startNode);
-
-    // Initialize the start node costs
-    startNode.gCost = 0;
-    startNode.hCost = GetDistance(startNode, targetNode);
-
-    while (openSet.Count > 0)
+    private List<PathNode> FindPath(PathNode startNode, PathNode targetNode)
     {
-        PathNode currentNode = openSet[0];
-        foreach (PathNode node in openSet)
+        List<PathNode> openSet = new List<PathNode>(); // Nodes to evaluate
+        HashSet<PathNode> closedSet = new HashSet<PathNode>(); // Nodes already evaluated
+        openSet.Add(startNode);
+
+        while (openSet.Count > 0)
         {
-            if (node.fCost < currentNode.fCost || 
-                (node.fCost == currentNode.fCost && node.hCost < currentNode.hCost))
+            PathNode currentNode = openSet[0];
+            foreach (PathNode node in openSet)
             {
-                currentNode = node;
-            }
-        }
-
-        openSet.Remove(currentNode);
-        closedSet.Add(currentNode);
-
-        if (currentNode == targetNode)
-        {
-            return RetracePath(startNode, targetNode);
-        }
-
-        foreach (PathNode neighbor in currentNode.connectedNodes)
-        {
-            if (neighbor.isOccupied || closedSet.Contains(neighbor))
-                continue;
-
-            // Include node-specific movement cost
-            int movementCost = neighbor.gCost > 0 ? neighbor.gCost : 1; // Use preset gCost or default to 1
-            int newCostToNeighbor = currentNode.gCost + movementCost;
-
-            if (newCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
-            {
-                neighbor.gCost = newCostToNeighbor;
-                neighbor.hCost = GetDistance(neighbor, targetNode);
-                neighbor.parent = currentNode;
-
-                if (!openSet.Contains(neighbor))
+                if (node.fCost < currentNode.fCost ||
+                    (node.fCost == currentNode.fCost && node.hCost < currentNode.hCost))
                 {
-                    openSet.Add(neighbor);
+                    currentNode = node;
+                }
+            }
+
+            openSet.Remove(currentNode);
+            closedSet.Add(currentNode);
+
+            if (currentNode == targetNode)
+            {
+                return RetracePath(startNode, targetNode);
+            }
+
+            foreach (PathNode neighbor in currentNode.connectedNodes)
+            {
+                if (neighbor.isOccupied || closedSet.Contains(neighbor))
+                    continue;
+
+                int newCostToNeighbor = currentNode.gCost + GetDistance(currentNode, neighbor);
+                if (newCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
+                {
+                    neighbor.gCost = newCostToNeighbor;
+                    neighbor.hCost = GetDistance(neighbor, targetNode);
+                    neighbor.parent = currentNode;
+
+                    if (!openSet.Contains(neighbor))
+                    {
+                        openSet.Add(neighbor);
+                    }
                 }
             }
         }
-    }
 
-    return null; // No path found
-}
+        return null; // No path found
+    }
 
     private List<PathNode> RetracePath(PathNode startNode, PathNode endNode)
     {
@@ -224,12 +233,10 @@ public class PlayerMovement : MonoBehaviour
         return path;
     }
 
-private int GetDistance(PathNode nodeA, PathNode nodeB)
-{
-    // Use grid-based Manhattan distance
-    int dx = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-    int dy = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-
-    return dx + dy;
-}
+    private int GetDistance(PathNode nodeA, PathNode nodeB)
+    {
+        int dx = Mathf.Abs(nodeA.gridX - nodeB.gridX);
+        int dy = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+        return dx + dy;
+    }
 }

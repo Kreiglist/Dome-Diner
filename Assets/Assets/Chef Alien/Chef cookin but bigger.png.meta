@@ -1,0 +1,639 @@
+fileFormatVersion: 2
+guid: 1cd00e51cc230c94097115b4de978b4d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5792058835305985468
+    second: Chef cookin but bigger_0
+  - first:
+      213: 1710618851820077433
+    second: Chef cookin but bigger_1
+  - first:
+      213: 8192624107866918986
+    second: Chef cookin but bigger_2
+  - first:
+      213: 60977707603831256
+    second: Chef cookin but bigger_3
+  - first:
+      213: 8110417613429836420
+    second: Chef cookin but bigger_4
+  - first:
+      213: 6227881018781665650
+    second: Chef cookin but bigger_5
+  - first:
+      213: -8607318159641697704
+    second: Chef cookin but bigger_6
+  - first:
+      213: 381433563640680712
+    second: Chef cookin but bigger_7
+  - first:
+      213: -273032039475385637
+    second: Chef cookin but bigger_8
+  - first:
+      213: -9200967353823260456
+    second: Chef cookin but bigger_9
+  - first:
+      213: 5730724083346692740
+    second: Chef cookin but bigger_10
+  - first:
+      213: -9163847102683659802
+    second: Chef cookin but bigger_11
+  - first:
+      213: -3421099638848595566
+    second: Chef cookin but bigger_12
+  - first:
+      213: -1717776079677841725
+    second: Chef cookin but bigger_13
+  - first:
+      213: -6429360871756516133
+    second: Chef cookin but bigger_14
+  - first:
+      213: 7048222866378972608
+    second: Chef cookin but bigger_15
+  - first:
+      213: 7949488889945002970
+    second: Chef cookin but bigger_16
+  - first:
+      213: 6097759938706420077
+    second: Chef cookin but bigger_17
+  - first:
+      213: -3648848621207624593
+    second: Chef cookin but bigger_18
+  - first:
+      213: -7849989215150469229
+    second: Chef cookin but bigger_19
+  - first:
+      213: -4185900274891079835
+    second: Chef cookin but bigger_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chef cookin but bigger_0
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44a8c6b4d297e9fa0800000000000000
+      internalID: -5792058835305985468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_1
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97182d058c65db710800000000000000
+      internalID: 1710618851820077433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_2
+      rect:
+        serializedVersion: 2
+        x: 2621
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4095bf383c02b170800000000000000
+      internalID: 8192624107866918986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_3
+      rect:
+        serializedVersion: 2
+        x: 3837
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9a1f8e6e2a8d000800000000000000
+      internalID: 60977707603831256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_4
+      rect:
+        serializedVersion: 2
+        x: 5053
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48a8e8c39ddfd8070800000000000000
+      internalID: 8110417613429836420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_5
+      rect:
+        serializedVersion: 2
+        x: 6269
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27901e33ac0ed6650800000000000000
+      internalID: 6227881018781665650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_6
+      rect:
+        serializedVersion: 2
+        x: 7485
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 852a9c1ccb9ac8880800000000000000
+      internalID: -8607318159641697704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_7
+      rect:
+        serializedVersion: 2
+        x: 8701
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801d6322ecf1b4500800000000000000
+      internalID: 381433563640680712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_8
+      rect:
+        serializedVersion: 2
+        x: 9917
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdae4c28ecef53cf0800000000000000
+      internalID: -273032039475385637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_9
+      rect:
+        serializedVersion: 2
+        x: 11133
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d01665c0f89f4080800000000000000
+      internalID: -9200967353823260456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_10
+      rect:
+        serializedVersion: 2
+        x: 12349
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ad7ade03f978f40800000000000000
+      internalID: 5730724083346692740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_11
+      rect:
+        serializedVersion: 2
+        x: 13565
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e14c8cbc9973d080800000000000000
+      internalID: -9163847102683659802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_12
+      rect:
+        serializedVersion: 2
+        x: 14781
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29956351100d580d0800000000000000
+      internalID: -3421099638848595566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_13
+      rect:
+        serializedVersion: 2
+        x: 15997
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce9327b1cb3928e0800000000000000
+      internalID: -1717776079677841725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_14
+      rect:
+        serializedVersion: 2
+        x: 17213
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd43822f95256c6a0800000000000000
+      internalID: -6429360871756516133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_15
+      rect:
+        serializedVersion: 2
+        x: 18429
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cddd489a5150d160800000000000000
+      internalID: 7048222866378972608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_16
+      rect:
+        serializedVersion: 2
+        x: 19645
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad31617f602425e60800000000000000
+      internalID: 7949488889945002970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_17
+      rect:
+        serializedVersion: 2
+        x: 20861
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6134306b589f9450800000000000000
+      internalID: 6097759938706420077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_18
+      rect:
+        serializedVersion: 2
+        x: 22077
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64eebde28fac5dc0800000000000000
+      internalID: -3648848621207624593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_19
+      rect:
+        serializedVersion: 2
+        x: 23293
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39f0f4c566c3f0390800000000000000
+      internalID: -7849989215150469229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chef cookin but bigger_20
+      rect:
+        serializedVersion: 2
+        x: 24509
+        y: 75
+        width: 895
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56f38e9b0e1b8e5c0800000000000000
+      internalID: -4185900274891079835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Chef cookin but bigger_0: -5792058835305985468
+      Chef cookin but bigger_1: 1710618851820077433
+      Chef cookin but bigger_10: 5730724083346692740
+      Chef cookin but bigger_11: -9163847102683659802
+      Chef cookin but bigger_12: -3421099638848595566
+      Chef cookin but bigger_13: -1717776079677841725
+      Chef cookin but bigger_14: -6429360871756516133
+      Chef cookin but bigger_15: 7048222866378972608
+      Chef cookin but bigger_16: 7949488889945002970
+      Chef cookin but bigger_17: 6097759938706420077
+      Chef cookin but bigger_18: -3648848621207624593
+      Chef cookin but bigger_19: -7849989215150469229
+      Chef cookin but bigger_2: 8192624107866918986
+      Chef cookin but bigger_20: -4185900274891079835
+      Chef cookin but bigger_3: 60977707603831256
+      Chef cookin but bigger_4: 8110417613429836420
+      Chef cookin but bigger_5: 6227881018781665650
+      Chef cookin but bigger_6: -8607318159641697704
+      Chef cookin but bigger_7: 381433563640680712
+      Chef cookin but bigger_8: -273032039475385637
+      Chef cookin but bigger_9: -9200967353823260456
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
