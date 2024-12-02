@@ -1,6 +1,6 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
-
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of movement
@@ -94,22 +94,33 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("moveSpeed", moveSpeed);
     }
 
-    private void FinishMovement()
-    {
-        Debug.Log($"Arrived at target: {currentTarget.name}");
-        isMoving = false;
-        currentNode = currentTarget; // Update the current node to the target node
-        currentTarget = null;
+private void FinishMovement()
+{
+    Debug.Log($"Arrived at target: {currentTarget.name}");
+    isMoving = false;
+    currentNode = currentTarget; // Update the current node to the target node
+    currentTarget = null;
 
-        if (movementQueue.Count > 0)
+    Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f); // Check nearby colliders
+    foreach (Collider collider in colliders)
+    {
+        Table table = collider.GetComponent<Table>();
+        if (table != null)
         {
-            MoveToNextNode();
-        }
-        else
-        {
-            Debug.Log("No more nodes in the queue.");
+            Debug.Log($"Player reached and interacting with Table {table.tableID}");
         }
     }
+
+    if (movementQueue.Count > 0)
+    {
+        MoveToNextNode();
+    }
+    else
+    {
+        Debug.Log("No more nodes in the queue.");
+    }
+}
+
 
     private void HandleHorizontalAnimation(Vector3 currentPosition, Vector3 targetPosition)
     {
@@ -171,67 +182,112 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private List<PathNode> FindPath(PathNode startNode, PathNode targetNode)
+{
+    if (startNode == null || targetNode == null)
     {
-        List<PathNode> openSet = new List<PathNode>(); // Nodes to evaluate
-        HashSet<PathNode> closedSet = new HashSet<PathNode>(); // Nodes already evaluated
-        openSet.Add(startNode);
-
-        while (openSet.Count > 0)
-        {
-            PathNode currentNode = openSet[0];
-            foreach (PathNode node in openSet)
-            {
-                if (node.fCost < currentNode.fCost ||
-                    (node.fCost == currentNode.fCost && node.hCost < currentNode.hCost))
-                {
-                    currentNode = node;
-                }
-            }
-
-            openSet.Remove(currentNode);
-            closedSet.Add(currentNode);
-
-            if (currentNode == targetNode)
-            {
-                return RetracePath(startNode, targetNode);
-            }
-
-            foreach (PathNode neighbor in currentNode.connectedNodes)
-            {
-                if (neighbor.isOccupied || closedSet.Contains(neighbor))
-                    continue;
-
-                int newCostToNeighbor = currentNode.gCost + GetDistance(currentNode, neighbor);
-                if (newCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
-                {
-                    neighbor.gCost = newCostToNeighbor;
-                    neighbor.hCost = GetDistance(neighbor, targetNode);
-                    neighbor.parent = currentNode;
-
-                    if (!openSet.Contains(neighbor))
-                    {
-                        openSet.Add(neighbor);
-                    }
-                }
-            }
-        }
-
-        return null; // No path found
+        Debug.LogError($"FindPath called with invalid nodes: startNode = {startNode}, targetNode = {targetNode}");
+        return null;
     }
 
-    private List<PathNode> RetracePath(PathNode startNode, PathNode endNode)
-    {
-        List<PathNode> path = new List<PathNode>();
-        PathNode currentNode = endNode;
+    // Initialize the data structures
+    Dictionary<PathNode, int> distances = new Dictionary<PathNode, int>();
+    Dictionary<PathNode, PathNode> previousNodes = new Dictionary<PathNode, PathNode>();
+    HashSet<PathNode> visitedNodes = new HashSet<PathNode>();
+    PriorityQueue<PathNode, int> priorityQueue = new PriorityQueue<PathNode, int>();
 
-        while (currentNode != startNode)
-        {
-            path.Add(currentNode);
-            currentNode = currentNode.parent;
-        }
-        path.Reverse();
-        return path;
+    // Set all distances to infinity, except for the start node
+    foreach (PathNode node in GetAllNodes())
+    {
+        distances[node] = int.MaxValue;
+        previousNodes[node] = null;
     }
+    distances[startNode] = 0;
+
+    // Enqueue the start node
+    priorityQueue.Enqueue(startNode, 0);
+
+    // Main loop
+    while (priorityQueue.Count > 0)
+    {
+        PathNode currentNode = priorityQueue.Dequeue();
+
+        // Skip if the node has already been visited
+        if (visitedNodes.Contains(currentNode))
+        {
+            continue;
+        }
+        visitedNodes.Add(currentNode);
+
+        // Stop if we reached the target node
+        if (currentNode == targetNode)
+        {
+            return RetracePath(startNode, targetNode, previousNodes);
+        }
+
+        // Process neighbors
+        foreach (PathNode neighbor in currentNode.connectedNodes)
+        {
+            if (visitedNodes.Contains(neighbor) || neighbor.isOccupied)
+            {
+                continue;
+            }
+
+            int newDistance = distances[currentNode] + GetDistance(currentNode, neighbor);
+
+            if (newDistance < distances[neighbor])
+            {
+                distances[neighbor] = newDistance;
+                previousNodes[neighbor] = currentNode;
+                priorityQueue.Enqueue(neighbor, newDistance);
+            }
+        }
+    }
+
+    // If we reach here, no path was found
+    Debug.LogWarning($"No path found from {startNode.name} to {targetNode.name}");
+    return null;
+}
+public class PriorityQueue<TItem, TPriority> where TPriority : IComparable<TPriority>
+{
+    private List<(TItem Item, TPriority Priority)> elements = new List<(TItem, TPriority)>();
+
+    public int Count => elements.Count;
+
+    public void Enqueue(TItem item, TPriority priority)
+    {
+        elements.Add((item, priority));
+        elements.Sort((a, b) => a.Priority.CompareTo(b.Priority));
+    }
+
+    public TItem Dequeue()
+    {
+        var bestItem = elements[0].Item;
+        elements.RemoveAt(0);
+        return bestItem;
+    }
+}
+
+private IEnumerable<PathNode> GetAllNodes()
+{
+    return FindObjectsOfType<PathNode>();
+}
+
+    private List<PathNode> RetracePath(PathNode startNode, PathNode targetNode, Dictionary<PathNode, PathNode> previousNodes)
+{
+    List<PathNode> path = new List<PathNode>();
+    PathNode currentNode = targetNode;
+
+    while (currentNode != null && currentNode != startNode)
+    {
+        path.Add(currentNode);
+        currentNode = previousNodes[currentNode];
+    }
+
+    path.Add(startNode);
+    path.Reverse();
+    return path;
+}
+
 
     private int GetDistance(PathNode nodeA, PathNode nodeB)
     {
