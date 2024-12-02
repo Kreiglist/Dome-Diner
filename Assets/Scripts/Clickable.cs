@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Clickable : MonoBehaviour
 {
     public PathNode associatedNode; // The PathNode this object points to
+    public Table associatedTable;   // Reference to the Table script for interactions
 
     private void OnMouseDown()
     {
@@ -19,6 +21,7 @@ public class Clickable : MonoBehaviour
             if (playerMovement != null)
             {
                 playerMovement.QueueMovement(associatedNode);
+                StartCoroutine(WaitForPlayerToReachNode(playerMovement));
             }
             else
             {
@@ -28,6 +31,19 @@ public class Clickable : MonoBehaviour
         else
         {
             Debug.LogError("No GameObject tagged 'Player' found in the scene.");
+        }
+    }
+
+    private IEnumerator WaitForPlayerToReachNode(PlayerMovement playerMovement)
+    {
+        while (playerMovement.IsMoving())
+        {
+            yield return null;
+        }
+
+        if (associatedTable != null)
+        {
+            associatedTable.OnPlayerInteraction();
         }
     }
 }

@@ -239,4 +239,8 @@ public class PlayerMovement : MonoBehaviour
         int dy = Mathf.Abs(nodeA.gridY - nodeB.gridY);
         return dx + dy;
     }
+        public bool IsMoving()
+    {
+        return isMoving; // Returns the current movement state
+    }
 }

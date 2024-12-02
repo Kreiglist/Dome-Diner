@@ -4,7 +4,8 @@ using System.Collections;
 public class Table : MonoBehaviour
 {
     public int tableID; // Unique ID for the table
-    public Transform chairPosition1; // Chair position
+    public Transform chairPosition1; // First chair position (left)
+    public Transform chairPosition2; // Second chair position (right)
     public GameObject seatedCustomerPrefab; // Seated customer prefab
     public GameObject orderingCustomerPrefab; // Ordering customer prefab
     public GameObject waitingCustomerPrefab; // Waiting for food customer prefab
@@ -35,56 +36,45 @@ public class Table : MonoBehaviour
 
             // Free the customer's spawn node
             customer.FreeSpawnNode();
+            HideChairs();
 
             // Destroy the dropped customer
             Destroy(customer.gameObject);
         }
     }
 
-private IEnumerator TableCycle()
-{
-    // Phase 1: Seated customer
-    Debug.Log($"Table {tableID} - Phase 1: Seated customer.");
-    currentCustomer = Instantiate(seatedCustomerPrefab, chairPosition1.position, Quaternion.identity);
-    yield return new WaitForSeconds(Random.Range(5f, 10f));
-    Destroy(currentCustomer);
-
-    // Phase 2: Ordering customer
-    Debug.Log($"Table {tableID} - Phase 2: Ordering customer.");
-    currentCustomer = Instantiate(orderingCustomerPrefab, chairPosition1.position, Quaternion.identity);
-    float patience = 15f;
-
-    while (patience > 0)
+    private IEnumerator TableCycle()
     {
-        patience -= Time.deltaTime;
-        yield return null;
+        // Phase 1: Seated customer
+        Debug.Log($"Table {tableID} - Phase 1: Seated customer.");
+        currentCustomer = Instantiate(seatedCustomerPrefab, chairPosition1.position, Quaternion.identity);
+        yield return new WaitForSeconds(Random.Range(5f, 10f));
+        Destroy(currentCustomer);
 
-        // Check if player has interacted to take order
-        if (PlayerInteraction.OrderTaken(this)) // Check if the player has interacted
-        {
-            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
-                if (inventory != null)
-                {
-                    // Add the order paper to the inventory
-                    inventory.AddItem($"OrderPaper:{tableID}", inventory.orderPaperSprite, tableID); // Corrected
-                    Debug.Log($"Order from Table {tableID} added to inventory.");
-                }
+        // Phase 2: Ordering customer
+        Debug.Log($"Table {tableID} - Phase 2: Ordering customer.");
+        currentCustomer = Instantiate(orderingCustomerPrefab, chairPosition1.position, Quaternion.identity);
 
-                Destroy(currentCustomer);
-            StartWaitingForFood();
-            yield break;
-        }
+        // Wait for player interaction
+        Debug.Log($"Waiting for interaction at Table {tableID}...");
     }
 
-    // Customer leaves due to timeout
-    Debug.Log($"Table {tableID} - Customer left due to impatience.");
-    ResetTable();
-}
+    public void OnPlayerInteraction()
+    {
+        Debug.Log($"Player interacted with Table {tableID}.");
+        PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+        if (inventory != null)
+        {
+            inventory.AddItem($"OrderPaper:{tableID}", inventory.orderPaperSprite, tableID);
+            Debug.Log($"Order from Table {tableID} added to inventory.");
+        }
 
+        Destroy(currentCustomer);
+        StartWaitingForFood();
+    }
 
     private void StartWaitingForFood()
     {
-        // Phase 3: Waiting for food
         Debug.Log($"Table {tableID} - Phase 3: Waiting for food.");
         Destroy(currentCustomer);
         currentCustomer = Instantiate(waitingCustomerPrefab, chairPosition1.position, Quaternion.identity);
@@ -99,12 +89,11 @@ private IEnumerator TableCycle()
             patience -= Time.deltaTime;
             yield return null;
 
-            // Check if player delivered the correct food
             PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
             if (inventory != null && inventory.HasItem($"Food:{tableID}"))
             {
                 int slotIndex = inventory.FindItemSlot($"Food:{tableID}");
-                inventory.RemoveItem(slotIndex); // Remove the food from inventory
+                inventory.RemoveItem(slotIndex);
                 Debug.Log($"Food delivered to Table {tableID}.");
                 Destroy(currentCustomer);
                 StartEating();
@@ -112,14 +101,12 @@ private IEnumerator TableCycle()
             }
         }
 
-        // Customer leaves due to timeout
         Debug.Log($"Table {tableID} - Customer left due to impatience.");
         ResetTable();
     }
 
     private void StartEating()
     {
-        // Phase 4: Eating customer
         Debug.Log($"Table {tableID} - Phase 4: Eating.");
         Destroy(currentCustomer);
         currentCustomer = Instantiate(eatingCustomerPrefab, chairPosition1.position, Quaternion.identity);
@@ -135,18 +122,15 @@ private IEnumerator TableCycle()
 
     private void StartOrderPhaseWithDirtyPlate()
     {
-        // Phase 5: Customer back to ordering phase, dirty plate appears
         Debug.Log($"Table {tableID} - Phase 5: Dirty plate and ordering.");
         currentCustomer = Instantiate(orderingCustomerPrefab, chairPosition1.position, Quaternion.identity);
 
-        // Show the dirty plate prefab
         if (dirtyPlatePrefab != null)
         {
             dirtyPlatePrefab.SetActive(true);
         }
 
-        float patience = 15f;
-        StartCoroutine(OrderWithDirtyPlate(patience));
+        StartCoroutine(OrderWithDirtyPlate(15f));
     }
 
     private IEnumerator OrderWithDirtyPlate(float patience)
@@ -156,20 +140,18 @@ private IEnumerator TableCycle()
             patience -= Time.deltaTime;
             yield return null;
 
-            // Check if player picked up money
             PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
             if (inventory != null && PlayerInteraction.MoneyCollected(this))
             {
                 if (moneyPrefab != null)
                 {
-                    moneyPrefab.SetActive(true); // Show money prefab
+                    moneyPrefab.SetActive(true);
                 }
                 StartResetTable();
                 yield break;
             }
         }
 
-        // Customer leaves due to timeout
         Debug.Log($"Table {tableID} - Customer left due to impatience.");
         ResetTable();
     }
@@ -184,13 +166,17 @@ private IEnumerator TableCycle()
     {
         Debug.Log($"Table {tableID} - Resetting to original state.");
 
-        // Hide dirty plate and money prefabs
         if (dirtyPlatePrefab != null) dirtyPlatePrefab.SetActive(false);
         if (moneyPrefab != null) moneyPrefab.SetActive(false);
 
-        // Remove customer
         if (currentCustomer != null) Destroy(currentCustomer);
 
         isTableOccupied = false;
+    }
+
+    private void HideChairs()
+    {
+        if (chairPosition1 != null) chairPosition1.gameObject.SetActive(false);
+        if (chairPosition2 != null) chairPosition2.gameObject.SetActive(false);
     }
 }
