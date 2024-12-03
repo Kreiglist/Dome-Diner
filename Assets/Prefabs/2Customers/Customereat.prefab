@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nasikuning_0
       objectReference: {fileID: 0}
+    - target: {fileID: 4604641097845992784, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.29151306
@@ -61,11 +65,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.450905
+      value: -21.96
       objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.46231
+      value: -20.795103
       objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -282,6 +286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nasikuning_0
       objectReference: {fileID: 0}
+    - target: {fileID: 4604641097845992784, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.29151306
@@ -300,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.407207
+      value: -20.74
       objectReference: {fileID: 0}
     - target: {fileID: 8482568926745279436, guid: ae88f3e6b81175a46afa592a0940fee5, type: 3}
       propertyPath: m_LocalPosition.z

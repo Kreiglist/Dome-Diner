@@ -23,7 +23,7 @@ public class Counter : MonoBehaviour
                 TMP_Text idText = food.GetComponentInChildren<TMP_Text>();
                 if (idText != null)
                 {
-                    idText.text = $"Table {tableID}";
+                    idText.text = $"{tableID}";
                 }
 
                 FoodItem foodItem = food.GetComponent<FoodItem>();

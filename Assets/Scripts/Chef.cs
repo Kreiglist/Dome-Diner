@@ -8,6 +8,7 @@ public class Chef : MonoBehaviour
     public int maxOrders = 2; // Maximum number of orders the chef can take
     private Queue<int> orderQueue = new Queue<int>(); // Queue of table IDs for orders
     private bool isCooking = false; // Whether the chef is currently cooking
+    public Animator chefAnimator; // Reference to the Animator component
 
     /// <summary>
     /// Adds an order to the chef's queue if not full.
@@ -37,6 +38,7 @@ public class Chef : MonoBehaviour
     private IEnumerator ProcessOrder()
     {
         isCooking = true;
+        UpdateChefAnimation();
 
         while (orderQueue.Count > 0)
         {
@@ -63,6 +65,22 @@ public class Chef : MonoBehaviour
         }
 
         isCooking = false;
+        UpdateChefAnimation();
         Debug.Log("Chef has finished all orders.");
+    }
+
+    /// <summary>
+    /// Updates the chef's animation based on the isCooking state.
+    /// </summary>
+    private void UpdateChefAnimation()
+    {
+        if (chefAnimator != null)
+        {
+            chefAnimator.SetBool("isCooking", isCooking);
+        }
+        else
+        {
+            Debug.LogWarning("Animator is not assigned to the Chef script.");
+        }
     }
 }

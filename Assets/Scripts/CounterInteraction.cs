@@ -44,7 +44,7 @@ public class CounterInteraction : MonoBehaviour
     private System.Collections.IEnumerator WaitForPlayerToReachNode(GameObject player, PlayerMovement playerMovement)
     {
         // Wait until the player stops moving
-        while (playerMovement.IsMoving())
+        while (playerMovement.isMoving)
         {
             yield return null; // Wait for the next frame
         }

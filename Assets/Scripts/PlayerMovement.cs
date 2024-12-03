@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private PathNode currentNode; // Current node the player is at
     private Queue<PathNode> movementQueue = new Queue<PathNode>(); // Queue to store the path to follow
     private PathNode currentTarget; // Current node the player is moving towards
-    private bool isMoving = false; // Whether the player is currently moving
+    public bool isMoving = false; // Whether the player is currently moving
     private bool moveHorizontally = true; // Control whether to move horizontally first
+
 
     private void Start()
     {
@@ -146,6 +147,7 @@ private void FinishMovement()
         animator.SetBool("isMovingForward", false);
         animator.SetBool("isWalkingSide", false);
     }
+
 
     public void QueueMovement(PathNode targetNode)
     {
@@ -294,9 +296,5 @@ private IEnumerable<PathNode> GetAllNodes()
         int dx = Mathf.Abs(nodeA.gridX - nodeB.gridX);
         int dy = Mathf.Abs(nodeA.gridY - nodeB.gridY);
         return dx + dy;
-    }
-        public bool IsMoving()
-    {
-        return isMoving; // Returns the current movement state
-    }
-}
+    }}
+
