@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
 private void FinishMovement()
 {
-    Debug.Log($"Arrived at target: {currentTarget.name}");
+    //Debug.Log($"Arrived at target: {currentTarget.name}");
     isMoving = false;
     currentNode = currentTarget; // Update the current node to the target node
     currentTarget = null;
@@ -116,10 +116,10 @@ private void FinishMovement()
     {
         MoveToNextNode();
     }
-    else
-    {
-        Debug.Log("No more nodes in the queue.");
-    }
+    //else
+    //{
+    //    Debug.Log("No more nodes in the queue.");
+    //}
 }
 
 
@@ -168,7 +168,7 @@ private void FinishMovement()
         }
         else
         {
-            Debug.LogError($"No path found from {currentNode.name} to {targetNode.name}");
+            //Debug.LogError($"No path found from {currentNode.name} to {targetNode.name}");
         }
     }
 
@@ -179,7 +179,7 @@ private void FinishMovement()
             currentTarget = movementQueue.Dequeue();
             isMoving = true;
             moveHorizontally = true;
-            Debug.Log($"Moving to next node: {currentTarget.name}");
+            //Debug.Log($"Moving to next node: {currentTarget.name}");
         }
     }
 
@@ -187,7 +187,7 @@ private void FinishMovement()
 {
     if (startNode == null || targetNode == null)
     {
-        Debug.LogError($"FindPath called with invalid nodes: startNode = {startNode}, targetNode = {targetNode}");
+        //Debug.LogError($"FindPath called with invalid nodes: startNode = {startNode}, targetNode = {targetNode}");
         return null;
     }
 
@@ -246,7 +246,7 @@ private void FinishMovement()
     }
 
     // If we reach here, no path was found
-    Debug.LogWarning($"No path found from {startNode.name} to {targetNode.name}");
+    //Debug.LogWarning($"No path found from {startNode.name} to {targetNode.name}");
     return null;
 }
 public class PriorityQueue<TItem, TPriority> where TPriority : IComparable<TPriority>

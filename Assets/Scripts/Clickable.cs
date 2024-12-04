@@ -8,7 +8,6 @@ public class Clickable : MonoBehaviour
     {
         if (associatedNode == null)
         {
-            Debug.LogWarning($"{gameObject.name} does not have an associated PathNode.");
             return;
         }
 
@@ -20,14 +19,6 @@ public class Clickable : MonoBehaviour
             {
                 playerMovement.QueueMovement(associatedNode);
             }
-            else
-            {
-                Debug.LogError("Player is missing the PlayerMovement script.");
-            }
-        }
-        else
-        {
-            Debug.LogError("No GameObject tagged 'Player' found in the scene.");
         }
     }
 }
