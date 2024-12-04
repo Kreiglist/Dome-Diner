@@ -45,16 +45,10 @@ public class Table : MonoBehaviour
         }
 
         // Check for interaction only if clicked
-        if (Input.GetMouseButtonDown(0))
-        {
-            CheckInteraction();
-        }
-    }
-
-    private void CheckInteraction()
-    {
-            Debug.Log($"Table {tableID} clicked.");
-            ProcessInteraction();
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     ProcessInteraction();
+        // }
     }
 
     public void HandleCustomerDrop(Customer customer)
@@ -122,71 +116,91 @@ public class Table : MonoBehaviour
 
         Destroy(currentCustomer);
         DestroyPatienceUI();
-        StartCoroutine(StartWaitingForFood());
+        StartWaitingForFood();
     }
 
-    private void ProcessInteraction()
+ public void ProcessInteraction()
+{
+    PlayerMovement player = FindObjectOfType<PlayerMovement>();
+    PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+
+    if (currentPhase == 2)
     {
-        if (currentPhase == 2)
-        {
-            Debug.Log($"Player interacted with Table {tableID} during Phase 2. Proceeding to Phase 3.");
-            currentPhase = 3; // Progress to Phase 3
-            StartPatience(15f); // Start the patience timer for Phase 3
-        }
-        else if (currentPhase == 3)
-        {
-            Debug.Log($"Player interacted with Table {tableID} during Phase 3. Processing order.");
-            ProcessOrder(); // Proceed to process the order
-        }
-        else if (currentPhase == 4)
-        {
-            Debug.Log($"Player interacted with Table {tableID} during Phase 4.");
+        Debug.Log($"Player interacted with Table {tableID} during Phase 2. Proceeding to Phase 3.");
+        currentPhase = 3; // Progress to Phase 3
+        StartPatience(15f); // Start the patience timer for Phase 3
+    }
+    else if (currentPhase == 3)
+    {
+        Debug.Log($"Player interacted with Table {tableID} during Phase 3. Processing order.");
+        ProcessOrder(); // Proceed to process the order
+    }
+    else if (currentPhase == 4)
+    {
+        Debug.Log($"Player interacted with Table {tableID} during Phase 4.");
 
-            PlayerMovement player = FindObjectOfType<PlayerMovement>();
-            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+        string foodItem = $"Food:{tableID}";
 
-            if (player != null && !player.isMoving)
+        // Check if the inventory contains the correct food item
+        if (inventory.HasItem(foodItem))
+        {
+            Debug.Log($"Player delivered correct food for Table {tableID}. Starting eating phase.");
+
+            // Find and remove the food item from the inventory
+            int foodSlot = inventory.FindItemSlot(foodItem);
+            if (foodSlot != -1)
             {
-                string foodItem = $"Food:{tableID}";
+                inventory.RemoveItem(foodSlot); // Remove the item from the slot
+            }
 
-                // Check if the inventory contains the correct food item
-                if (inventory.HasItem(foodItem))
-                {
-                    Debug.Log($"Player delivered correct food for Table {tableID}. Starting eating phase.");
+            StartEating(); // Transition to eating phase
+        }
+        else
+        {
+            Debug.LogWarning($"Player does not have the correct food for Table {tableID}. Cannot proceed.");
+        }
+    }
 
-                    // Find and remove the food item from the inventory
-                    int foodSlot = inventory.FindItemSlot(foodItem);
-                    if (foodSlot != -1)
-                    {
-                        inventory.RemoveItem(foodSlot); // Remove the item from the slot
-                    }
 
-                    StartEating(); // Transition to eating phase
-                }
-                else
-                {
-                    Debug.LogWarning($"Player does not have the correct food for Table {tableID}. Cannot proceed.");
-                }
+        if (currentPhase == 5)
+        {
+            Debug.Log($"Player interacted with Table {tableID} during Phase 5.");
+            
+            // Check if the player has an available inventory slot
+            if (inventory.AddEmptyPlate(tableID)) // Successfully added a dirty plate
+            {
+                Debug.Log($"Player received a dirty plate from Table {tableID}. Resetting table.");
+                if (currentCustomer != null) Destroy(currentCustomer);
+                ResetTable(); // Reset table to Phase 1
+            }
+            else
+            {
+                Debug.LogWarning($"Player's inventory is full! Moving Table {tableID} to Phase 6.");
+                currentPhase = 6; // Transition to Phase 6
             }
         }
-    }
+        else if (currentPhase == 6)
+        {
+            Debug.Log($"Player interacted with Table {tableID} during Phase 6.");
+
+            // Check again if the player now has an available inventory slot
+            if (inventory.AddEmptyPlate(tableID)) // Successfully added a dirty plate
+            {
+                Debug.Log($"Player received a dirty plate from Table {tableID}. Resetting table.");
+                ResetTable(); // Reset table to Phase 1
+            }
+            else
+            {
+                Debug.LogWarning($"Player's inventory is still full! Table {tableID} remains in Phase 6.");
+            }
+        }
+}
 
     private void StartWaitingForFood()
     {
         Debug.Log($"Table {tableID} - Phase 3: Waiting for food.");
         currentCustomer = Instantiate(waitingCustomerPrefab, chairPosition1.position, Quaternion.identity);
-        StartPatience(15f);
         currentPhase = 4;
-        while (patience > 0 && currentPhase == 4)
-        {
-            PlayerMovement player = FindObjectOfType<PlayerMovement>();
-            if (player != null && !player.isMoving) // Ensure player is stationary
-            {
-                ProcessOrder();
-                yield break;
-            }
-            yield return null;
-        }
     }
 
     private void StartEating()
@@ -204,24 +218,23 @@ public class Table : MonoBehaviour
         StartOrderPhaseWithDirtyPlate();
     }
 
-    private void StartOrderPhaseWithDirtyPlate()
+    public void StartOrderPhaseWithDirtyPlate()
     {
         Debug.Log($"Table {tableID} - Phase 5: Dirty plate.");
         currentCustomer = Instantiate(callingCustomerPrefab, chairPosition1.position, Quaternion.identity);
         if (dirtyPlatePrefab != null) dirtyPlatePrefab.SetActive(true);
-        StartPatience(30f);
-        currentPhase = 5;
+        currentPhase = 5; // Set phase to 5
     }
 
     private void ResetTable()
     {
         Debug.Log($"Table {tableID} - Resetting to original state.");
         if (dirtyPlatePrefab != null) dirtyPlatePrefab.SetActive(false);
-        if (moneyPrefab != null) moneyPrefab.SetActive(false);
         if (currentCustomer != null) Destroy(currentCustomer);
-        DestroyPatienceUI();
+        if (chairPosition1 != null) chairPosition1.gameObject.SetActive(true);
+        if (chairPosition2 != null) chairPosition2.gameObject.SetActive(true);
         isTableOccupied = false;
-        currentPhase = 1;
+        currentPhase = 1; // Reset to phase 1
     }
 
     private void StartPatience(float duration)

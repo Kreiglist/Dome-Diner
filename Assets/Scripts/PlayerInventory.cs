@@ -151,4 +151,18 @@ public class PlayerInventory : MonoBehaviour
         }
         return -1; // Item not found
     }
+    public bool RemoveItemByType(string itemType)
+{
+    for (int i = 0; i < items.Length; i++)
+    {
+        if (items[i] != null && items[i].Contains(itemType))
+        {
+            items[i] = null; // Clear the item
+            itemSlotsUI[i].sprite = emptySlotSprite; // Update UI to show empty slot
+            itemSlotTexts[i].text = ""; // Clear associated text
+            return true; // Successfully removed
+        }
+    }
+    return false; // No matching item found
+}
 }

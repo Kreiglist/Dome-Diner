@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
+using System.Collections; // Required for IEnumerator
+using System.Collections.Generic; // If you're using Lists or similar
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of movement
@@ -29,14 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isMoving && currentTarget != null)
+        if (currentTarget != null)
         {
             MoveTowardsTarget();
         }
-        else if (!isMoving)
-        {
-            ResetAnimations();
-        }
+        
     }
 
     private void MoveTowardsTarget()
@@ -101,13 +99,13 @@ private void FinishMovement()
     isMoving = false;
     currentNode = currentTarget; // Update the current node to the target node
     currentTarget = null;
-
     Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f); // Check nearby colliders
     foreach (Collider collider in colliders)
     {
         Table table = collider.GetComponent<Table>();
         if (table != null)
         {
+            // table.ProcessInteraction();
             Debug.Log($"Player reached and interacting with Table {table.tableID}");
         }
     }
@@ -120,9 +118,13 @@ private void FinishMovement()
     //{
     //    Debug.Log("No more nodes in the queue.");
     //}
+
 }
-
-
+    private IEnumerator isMovingCooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        
+    }
     private void HandleHorizontalAnimation(Vector3 currentPosition, Vector3 targetPosition)
     {
         if (targetPosition.x < currentPosition.x)

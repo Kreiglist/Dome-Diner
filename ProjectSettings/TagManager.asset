@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Table
   - Node
+  - PiringKotor
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Chair
   - Water
   - UI
+  - Player
   - Table
-  - 
   - 
   - 
   - 
