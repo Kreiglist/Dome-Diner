@@ -12,7 +12,7 @@ public class Table : MonoBehaviour
     public GameObject eatingCustomerPrefab; // Eating customer
     public GameObject callingCustomerPrefab; // Calling after eating
     public GameObject dirtyPlatePrefab; // Dirty plate prefab
-    public GameObject moneyPrefab; // Money prefab
+    public GameObject tableNumberPrefab; // Money prefab
     public Transform patienceUIPosition; // Position for patience UI
     public GameObject patienceUIPrefab; // Prefab for patience UI 
     private bool isTableOccupied = false; // Tracks if the table is occupied
@@ -26,7 +26,7 @@ public class Table : MonoBehaviour
     {
         // Ensure prefabs are initially hidden
         if (dirtyPlatePrefab != null) dirtyPlatePrefab.SetActive(false);
-        if (moneyPrefab != null) moneyPrefab.SetActive(false);
+        if (tableNumberPrefab != null) tableNumberPrefab.SetActive(false);
     }
 
     private void Update()
@@ -221,6 +221,7 @@ public class Table : MonoBehaviour
     private void StartWaitingForFood()
     {
         Debug.Log($"Table {tableID} - Phase 3: Waiting for food.");
+        if (tableNumberPrefab != null) tableNumberPrefab.SetActive(true);
         currentCustomer = Instantiate(waitingCustomerPrefab, chairPosition1.position, Quaternion.identity);
         currentPhase = 4;
     }
@@ -228,6 +229,7 @@ public class Table : MonoBehaviour
     private void StartEating()
     {
         Debug.Log($"Table {tableID} - Phase 4: Eating.");
+        if (tableNumberPrefab != null) tableNumberPrefab.SetActive(false);
         Destroy(currentCustomer);
         currentCustomer = Instantiate(eatingCustomerPrefab, chairPosition1.position, Quaternion.identity);
         StartCoroutine(EatingTimer());
