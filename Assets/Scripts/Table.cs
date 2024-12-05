@@ -107,19 +107,42 @@ public class Table : MonoBehaviour
 
     private void ProcessOrder()
     {
-        PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
-        if (inventory != null)
+        private void ProcessOrder()
         {
-            inventory.AddItem($"OrderPaper:{tableID}", inventory.orderPaperSprite, tableID);
-            Debug.Log($"Order for Table {tableID} added to inventory.");
+            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+            if (inventory != null)
+            {
+                // Count the number of occupied inventory slots
+                int itemCount = 0;
+                foreach (var item in inventory.items)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        itemCount++;
+                    }
+                }
+
+                // Check if inventory has exactly 2 items
+                if (itemCount == 2)
+                {
+                    Debug.LogWarning($"Inventory is full with {itemCount} items! Cannot add order for Table {tableID}.");
+                    // Handle full inventory (e.g., show UI message or reset table phase)
+                    return;
+                }
+
+                // Add the item if there is space
+                inventory.AddItem($"OrderPaper:{tableID}", inventory.orderPaperSprite, tableID);
+                Debug.Log($"Order for Table {tableID} added to inventory.");
+            }
+
+            Destroy(currentCustomer);
+            DestroyPatienceUI();
+            StartWaitingForFood();
         }
 
-        Destroy(currentCustomer);
-        DestroyPatienceUI();
-        StartWaitingForFood();
     }
 
- public void ProcessInteraction()
+    public void ProcessInteraction()
 {
     PlayerMovement player = FindObjectOfType<PlayerMovement>();
     PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
@@ -233,9 +256,34 @@ public class Table : MonoBehaviour
         if (currentCustomer != null) Destroy(currentCustomer);
         if (chairPosition1 != null) chairPosition1.gameObject.SetActive(true);
         if (chairPosition2 != null) chairPosition2.gameObject.SetActive(true);
+
+        // Check and delete food associated with this table's ID from the counter
+        Counter counter = FindObjectOfType<Counter>();
+        if (counter != null)
+        {
+            foreach (Transform spawnPoint in counter.spawnPoints)
+            {
+                if (spawnPoint.childCount > 0)
+                {
+                    GameObject food = spawnPoint.GetChild(0).gameObject;
+                    FoodItem foodItem = food.GetComponent<FoodItem>();
+                    if (foodItem != null && foodItem.tableID == tableID)
+                    {
+                        Destroy(food);
+                        Debug.Log($"Deleted food associated with Table {tableID} from the counter.");
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Counter not found in the scene.");
+        }
+
         isTableOccupied = false;
         currentPhase = 1; // Reset to phase 1
     }
+
 
     private void StartPatience(float duration)
     {

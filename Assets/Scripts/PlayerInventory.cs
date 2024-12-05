@@ -165,4 +165,5 @@ public class PlayerInventory : MonoBehaviour
     }
     return false; // No matching item found
 }
+
 }
