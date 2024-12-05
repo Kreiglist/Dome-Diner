@@ -12,7 +12,7 @@ public class PlayerInventory : MonoBehaviour
     public Sprite emptyPlateSprite; // Sprite for empty plate
     public TextMeshProUGUI[] itemSlotTexts; // TextMeshPro components to display table IDs on each slot
 
-    private string[] items = new string[2]; // Internal inventory: "OrderPaper:<TableID>", "Food:<TableID>", or "EmptyPlate:<TableID>"
+    public string[] items = new string[2]; // Internal inventory: "OrderPaper:<TableID>", "Food:<TableID>", or "EmptyPlate:<TableID>"
 
     private void Start()
     {

@@ -105,8 +105,7 @@ public class Table : MonoBehaviour
         }
     }
 
-    private void ProcessOrder()
-    {
+ 
         private void ProcessOrder()
         {
             PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
@@ -140,7 +139,7 @@ public class Table : MonoBehaviour
             StartWaitingForFood();
         }
 
-    }
+    
 
     public void ProcessInteraction()
 {
