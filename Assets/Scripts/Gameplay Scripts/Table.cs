@@ -15,13 +15,13 @@ public class Table : MonoBehaviour
     public GameObject tableNumberPrefab; // Money prefab
     public Transform patienceUIPosition; // Position for patience UI
     public GameObject patienceUIPrefab; // Prefab for patience UI 
-    private bool isTableOccupied = false; // Tracks if the table is occupied
+    public bool isTableOccupied = false; // Tracks if the table is occupied
     private GameObject currentCustomer; // Current customer object
     private GameObject currentPatienceUI; // Current patience UI
     private Coroutine tableRoutine; // Tracks table coroutine
     private float patience = 0f; // Patience timer for the current phase
     private int currentPhase = 1; // Tracks current phase of the table
-
+    public LevelManager levelManager;
     private void Start()
     {
         // Ensure prefabs are initially hidden
@@ -187,10 +187,11 @@ public class Table : MonoBehaviour
         if (currentPhase == 5)
         {
             Debug.Log($"Player interacted with Table {tableID} during Phase 5.");
-            
+            ServeCustomer();
             // Check if the player has an available inventory slot
             if (inventory.AddEmptyPlate(tableID)) // Successfully added a dirty plate
             {
+                
                 Debug.Log($"Player received a dirty plate from Table {tableID}. Resetting table.");
                 if (currentCustomer != null) Destroy(currentCustomer);
                 ResetTable(); // Reset table to Phase 1
@@ -320,4 +321,19 @@ public class Table : MonoBehaviour
         if (chairPosition1 != null) chairPosition1.gameObject.SetActive(false);
         if (chairPosition2 != null) chairPosition2.gameObject.SetActive(false);
     }
+    public void ServeCustomer()
+{
+
+    if (levelManager == null)
+    {
+        Debug.LogError("LevelManager is not assigned!");
+        return;
+    }
+
+    if (currentCustomer == null)
+    {
+        Debug.LogWarning("No current customer to serve.");
+        return;
+    }levelManager.CustomerServed();
+}
 }

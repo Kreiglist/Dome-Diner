@@ -56,14 +56,31 @@ public class CustomerSpawner : MonoBehaviour
         return null; // No available nodes
     }
 
-    private void SpawnCustomer(Transform node)
+private void SpawnCustomer(Transform node)
+{
+    // Instantiate the customer at the node's position
+    GameObject customer = Instantiate(customerPrefab, node.position, Quaternion.identity);
+
+    // Assign the node to the customer's script
+    Customer customerScript = customer.GetComponent<Customer>();
+    if (customerScript != null)
     {
-        GameObject customer = Instantiate(customerPrefab, node.position, Quaternion.identity);
-        nodeAvailability[node] = false; // Mark the node as unavailable
-        StartCoroutine(FreeNodeAfterTime(node, 16f)); // Free the node after 16 seconds
-        spawnedCustomers++;
-        Debug.Log($"Customer spawned at node: {node.name}");
+        customerScript.spawnNode = node; // Assign the node to the customer's spawnNode property
     }
+    else
+    {
+        Debug.LogError("Customer prefab does not have a Customer script attached.");
+    }
+
+    // Mark the node as unavailable
+    nodeAvailability[node] = false;
+
+    // Free the node after a set duration
+    StartCoroutine(FreeNodeAfterTime(node, 16f));
+
+    spawnedCustomers++;
+    Debug.Log($"Customer spawned at node: {node.name}");
+}
 
     private IEnumerator FreeNodeAfterTime(Transform node, float duration)
     {
@@ -74,4 +91,9 @@ public class CustomerSpawner : MonoBehaviour
             Debug.Log($"Node {node.name} is now free.");
         }
     }
+        public bool IsFinishedSpawning()
+    {
+        return spawnedCustomers >= maxCustomersToSpawn;
+    }
+
 }
