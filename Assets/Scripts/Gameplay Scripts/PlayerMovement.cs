@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private PathNode currentTarget; // Current node the player is moving towards
     public bool isMoving = false; // Whether the player is currently moving
     private bool moveHorizontally = true; // Control whether to move horizontally first
-
+    public int maxQueueSize = 2; 
 
     private void Start()
     {
@@ -152,38 +152,44 @@ private void FinishMovement()
 
 
     public void QueueMovement(PathNode targetNode)
+{
+    // Check if the movement queue is full
+    if (movementQueue.Count >= maxQueueSize)
     {
-        // Perform pathfinding to generate the path
-        List<PathNode> path = FindPath(currentNode, targetNode);
-
-        if (path != null)
-        {
-            foreach (PathNode node in path)
-            {
-                movementQueue.Enqueue(node);
-            }
-
-            if (!isMoving)
-            {
-                MoveToNextNode();
-            }
-        }
-        else
-        {
-            //Debug.LogError($"No path found from {currentNode.name} to {targetNode.name}");
-        }
+        Debug.LogWarning("Movement queue is full! Ignoring additional clicks.");
+        return; // Ignore further clicks
     }
 
-    private void MoveToNextNode()
+    // Perform pathfinding to generate the path
+    List<PathNode> path = FindPath(currentNode, targetNode);
+
+    if (path != null)
     {
-        if (movementQueue.Count > 0)
+        foreach (PathNode node in path)
         {
-            currentTarget = movementQueue.Dequeue();
-            isMoving = true;
-            moveHorizontally = true;
-            //Debug.Log($"Moving to next node: {currentTarget.name}");
+            movementQueue.Enqueue(node);
+        }
+
+        if (!isMoving)
+        {
+            MoveToNextNode();
         }
     }
+    else
+    {
+        Debug.LogError($"No path found from {currentNode.name} to {targetNode.name}");
+    }
+}
+
+private void MoveToNextNode()
+{
+    if (movementQueue.Count > 0)
+    {
+        currentTarget = movementQueue.Dequeue();
+        isMoving = true;
+        moveHorizontally = true;
+    }
+}
 
     private List<PathNode> FindPath(PathNode startNode, PathNode targetNode)
 {

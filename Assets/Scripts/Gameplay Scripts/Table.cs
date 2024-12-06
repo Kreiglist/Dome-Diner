@@ -281,7 +281,26 @@ public class Table : MonoBehaviour
         {
             Debug.LogWarning("Counter not found in the scene.");
         }
+        PlayerInventory playerInventory = FindObjectOfType<PlayerInventory>();
+    if (playerInventory != null)
+    {
+        string foodItemToRemove = $"Food:{tableID}";
+        int slotIndex = playerInventory.FindItemSlot(foodItemToRemove);
 
+        if (slotIndex != -1)
+        {
+            playerInventory.RemoveItem(slotIndex);
+            Debug.Log($"Removed {foodItemToRemove} from player inventory.");
+        }
+        else
+        {
+            Debug.Log($"No food for Table {tableID} found in player inventory.");
+        }
+    }
+    else
+    {
+        Debug.LogWarning("PlayerInventory not found in the scene.");
+    }
         isTableOccupied = false;
         currentPhase = 1; // Reset to phase 1
     }

@@ -12,6 +12,7 @@ public class ReturnToMenuButton : MonoBehaviour
     private void LoadMainMenu()
     {
         // Load the Main Menu scene
-        SceneManager.LoadScene("Main Menu"); // Replace with your actual scene name
+        SceneManager.LoadScene("Main Menu");
+           // Replace with your actual scene name
     }
 }

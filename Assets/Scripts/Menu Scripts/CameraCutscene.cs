@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class CameraCutscene : MonoBehaviour
 {
     public Transform startPoint; // Camera's starting position
@@ -15,7 +15,8 @@ public class CameraCutscene : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1f;  // Resume the game (normal time progression)
+                                                                                           
+        Time.timeScale = 1f;  // Resume the game (normal time574632  progression)
         mainCamera = Camera.main;
         mainCamera.transform.position = startPoint.position;
 
