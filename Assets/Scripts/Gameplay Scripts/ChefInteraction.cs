@@ -57,6 +57,7 @@ public class ChefInteraction : MonoBehaviour
 
         // Step 4: Once the player has reached the node, process the interaction
         HandlePlayerInteraction();
+        HandlePlayerInteraction();
     }
 
     private void HandlePlayerInteraction()

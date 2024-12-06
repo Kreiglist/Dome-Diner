@@ -13,6 +13,7 @@ public class DirtyPlateRemover : MonoBehaviour
         if (!isProcessing)
         {
             StartCoroutine(WaitForPlayerToStop(other.gameObject));
+            StartCoroutine(WaitForPlayerToStop(other.gameObject));
         }
     }
 
