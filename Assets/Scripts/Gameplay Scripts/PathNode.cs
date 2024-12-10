@@ -6,7 +6,7 @@ public class PathNode : MonoBehaviour
     public List<PathNode> connectedNodes = new List<PathNode>(); // Neighboring nodes
     public bool isOccupied = false; // Whether it's occupied by an obstacle or table
 
-    // Pathfinding-related properties
+    public List<ObstacleNode> obstacleNodes;
     public int gridX, gridY; // Optional if using a grid
     public int gCost, hCost; // Cost values for pathfinding
     public PathNode parent; // Parent node for retracing paths
@@ -32,5 +32,16 @@ public class PathNode : MonoBehaviour
     public void SetOccupied(bool state)
     {
         isOccupied = state;
+    }
+    public bool IsBlocked()
+    {
+        foreach (ObstacleNode obstacle in obstacleNodes)
+        {
+            if (obstacle != null && obstacle.isBlocked)
+            {
+                return true; // If any obstacle is blocked, the PathNode is blocked
+            }
+        }
+        return false; // No obstacles are blocking this PathNode
     }
 }
